@@ -29,4 +29,12 @@ public class MemberResponseDto {
     public static class CreateMemberDto {
         private String field;
     }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class UpdateMemberDto {
+        private String field;
+    }
 }

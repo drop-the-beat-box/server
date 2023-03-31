@@ -22,4 +22,9 @@ public class MemberRestController {
     public ResponseEntity<MemberResponseDto.CreateMemberDto> createMemberInTeam(@PathVariable(name = "teamId") Long teamId, @PathVariable(name = "memberId") Long memberId) {
         return null;
     }
+
+    @PatchMapping("/team/member")
+    public ResponseEntity<MemberResponseDto.UpdateMemberDto> updateMember(@RequestBody MemberRequestDto.UpdateMemberDto request) {
+        return null;
+    }
 }
