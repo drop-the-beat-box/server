@@ -11,4 +11,12 @@ public class SharedFileResponseDto {
     public static class sharedMemberListDto{
         String filed;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class DeleteSharedMemberDto{
+        String filed;
+    }
 }

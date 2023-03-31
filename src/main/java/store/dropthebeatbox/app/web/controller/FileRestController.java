@@ -28,8 +28,8 @@ public class FileRestController {
         return null;
     }
 
-    @DeleteMapping("/member/file")
-    public ResponseEntity<FileResponseDto.DeleteFileDto> deletefile(@RequestBody FileResponseDto.DeleteFileDto request){
+    @DeleteMapping("/member/file/{fileId}")
+    public ResponseEntity<FileResponseDto.DeleteFileDto> deleteFile(@PathVariable(name = "fileId") Long fileId){
         return null;
     }
 }

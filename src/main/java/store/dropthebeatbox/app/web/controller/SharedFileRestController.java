@@ -17,4 +17,9 @@ public class SharedFileRestController {
     public ResponseEntity<SharedFileRequestDto.CreateSharedFileDto> createSharedFile(@PathVariable(name = "fileId")Long fileId,@PathVariable(name = "memberId") Long memberId, @RequestBody SharedFileRequestDto.CreateSharedFileDto request){
         return null;
     }
+
+    @DeleteMapping("/shared/{fileId}/member/{memberId}")
+    public ResponseEntity<SharedFileResponseDto.DeleteSharedMemberDto> deleteSharedFile(@PathVariable(name = "fileId") Long fileId, @PathVariable(name = "memberId") Long memberId){
+        return null;
+    }
 }
