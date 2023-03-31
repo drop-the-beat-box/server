@@ -1,9 +1,8 @@
 package store.dropthebeatbox.app.web.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import store.dropthebeatbox.app.web.dto.FileRequestDto;
 import store.dropthebeatbox.app.web.dto.FileResponseDto;
 
 @RestController
@@ -16,6 +15,11 @@ public class FileRestController {
 
     @GetMapping("/member/files")
     public ResponseEntity<FileResponseDto.FileListDto> getFileListByFiledId(){
+        return null;
+    }
+
+    @PostMapping("/member/file")
+    public ResponseEntity<FileRequestDto.CreateFileDto> createFile(@RequestBody FileRequestDto.CreateFileDto request){
         return null;
     }
 }
