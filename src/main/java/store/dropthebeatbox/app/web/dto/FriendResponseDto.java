@@ -45,4 +45,12 @@ public class FriendResponseDto {
     public static class CreateFriendRequestDto {
         private String field;
     }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class AcceptFriendRequestDto {
+        private String field;
+    }
 }

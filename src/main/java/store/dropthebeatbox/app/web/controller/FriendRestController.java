@@ -24,4 +24,9 @@ public class FriendRestController {
     public ResponseEntity<FriendResponseDto.CreateFriendRequestDto> createFriendRequest(@PathVariable(name = "friendId") Long friendId) {
         return null;
     }
+
+    @PostMapping("/member/friend/request/{requestId}")
+    public ResponseEntity<FriendResponseDto.AcceptFriendRequestDto> acceptFriendRequest(@PathVariable(name = "requestId") Long requsetId) {
+        return null;
+    }
 }
