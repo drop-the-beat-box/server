@@ -1,10 +1,7 @@
 package store.dropthebeatbox.app.web.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.web.dto.FriendResponseDto;
 
 @RestController
@@ -27,6 +24,11 @@ public class FriendRestController {
 
     @PostMapping("/member/friend/request/{requestId}")
     public ResponseEntity<FriendResponseDto.AcceptFriendRequestDto> acceptFriendRequest(@PathVariable(name = "requestId") Long requsetId) {
+        return null;
+    }
+
+    @DeleteMapping("/member/friend/{friendId}")
+    public ResponseEntity<FriendResponseDto.DeleteFriendDto> deleteFriend(@PathVariable(name = "friendId") Long friendId) {
         return null;
     }
 }
