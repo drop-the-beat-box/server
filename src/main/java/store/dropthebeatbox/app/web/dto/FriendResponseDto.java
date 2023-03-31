@@ -37,4 +37,12 @@ public class FriendResponseDto {
     public static class FriendRequestListDto {
         private List<FriendRequestDto> friendRequestDtoList;
     }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class CreateFriendRequestDto {
+        private String field;
+    }
 }
