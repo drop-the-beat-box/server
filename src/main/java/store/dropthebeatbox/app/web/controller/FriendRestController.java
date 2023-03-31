@@ -13,4 +13,9 @@ public class FriendRestController {
     public ResponseEntity<FriendResponseDto.FriendListDto> getFriendList() {
         return null;
     }
+
+    @GetMapping("/member/friend/requests")
+    public ResponseEntity<FriendResponseDto.FriendRequestListDto> getFriendRequestList() {
+        return null;
+    }
 }
