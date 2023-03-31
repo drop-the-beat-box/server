@@ -22,4 +22,9 @@ public class FileRestController {
     public ResponseEntity<FileRequestDto.CreateFileDto> createFile(@RequestBody FileRequestDto.CreateFileDto request){
         return null;
     }
+
+    @PatchMapping("/member/file")
+    public ResponseEntity<FileRequestDto.UpdateFileDto> updateFile(@RequestBody FileRequestDto.UpdateFileDto request){
+        return null;
+    }
 }

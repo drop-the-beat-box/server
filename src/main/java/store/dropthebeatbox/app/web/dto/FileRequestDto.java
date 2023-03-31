@@ -13,4 +13,11 @@ public class FileRequestDto {
     public static class CreateFileDto{
         String filed;
     }
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class UpdateFileDto{
+        String filed;
+    }
 }
