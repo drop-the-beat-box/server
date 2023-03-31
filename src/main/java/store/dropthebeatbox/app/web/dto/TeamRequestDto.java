@@ -7,4 +7,8 @@ public class TeamRequestDto {
     public static class CreateTeamDto {
         private String field;
     }
+
+    @Getter
+    public static class UpdateTeamDto {
+    }
 }

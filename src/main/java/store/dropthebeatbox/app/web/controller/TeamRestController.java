@@ -22,4 +22,9 @@ public class TeamRestController {
     public ResponseEntity<TeamResponseDto.CreateTeamDto> createTeam(@RequestBody TeamRequestDto.CreateTeamDto request) {
         return null;
     }
+
+    @PatchMapping("/member/team/{teamId}")
+    public ResponseEntity<TeamResponseDto.UpdateTeamDto> updateTeam(@RequestBody TeamRequestDto.UpdateTeamDto request) {
+        return null;
+    }
 }
