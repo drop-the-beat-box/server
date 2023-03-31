@@ -12,4 +12,9 @@ public class FavoriteFileRestController {
     public ResponseEntity<FavoriteFileResponseDto.FavoriteFileDto> getFavoriteFileByMemberId(){
         return null;
     }
+
+    @GetMapping("/member/favorites")
+    public ResponseEntity<FavoriteFileResponseDto.FavoriteFileListDto> getFavoriteFileListByMemberId(){
+        return null;
+    }
 }
