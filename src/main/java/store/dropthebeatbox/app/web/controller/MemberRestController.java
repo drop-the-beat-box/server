@@ -27,4 +27,9 @@ public class MemberRestController {
     public ResponseEntity<MemberResponseDto.UpdateMemberDto> updateMember(@RequestBody MemberRequestDto.UpdateMemberDto request) {
         return null;
     }
+
+    @DeleteMapping("/team/member")
+    public ResponseEntity<MemberResponseDto.DeleteMemberDto> deleteMember() {
+        return null;
+    }
 }
