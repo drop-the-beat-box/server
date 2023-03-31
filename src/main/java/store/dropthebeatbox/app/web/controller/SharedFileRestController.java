@@ -13,8 +13,8 @@ public class SharedFileRestController {
         return null;
     }
 
-    @PostMapping("/shared/{fileId}/member")
-    public ResponseEntity<SharedFileRequestDto.CreateSharedFileDto> createSharedFile(@PathVariable(name = "fileId")Long fileId , @RequestBody SharedFileRequestDto.CreateSharedFileDto request){
+    @PostMapping("/shared/{fileId}/member/{memberId}")
+    public ResponseEntity<SharedFileRequestDto.CreateSharedFileDto> createSharedFile(@PathVariable(name = "fileId")Long fileId,@PathVariable(name = "memberId") Long memberId, @RequestBody SharedFileRequestDto.CreateSharedFileDto request){
         return null;
     }
 }
