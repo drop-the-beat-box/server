@@ -1,6 +1,7 @@
-package store.dropthebeatbox.app.domain;
+package store.dropthebeatbox.app.domain.mapping;
 
 import lombok.*;
+import store.dropthebeatbox.app.domain.Member;
 
 import javax.persistence.*;
 
