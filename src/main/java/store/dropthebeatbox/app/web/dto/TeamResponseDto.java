@@ -37,4 +37,12 @@ public class TeamResponseDto {
     public static class UpdateTeamDto {
         private String field;
     }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class DeleteTeamDto {
+        private String field;
+    }
 }

@@ -24,7 +24,12 @@ public class TeamRestController {
     }
 
     @PatchMapping("/member/team/{teamId}")
-    public ResponseEntity<TeamResponseDto.UpdateTeamDto> updateTeam(@RequestBody TeamRequestDto.UpdateTeamDto request) {
+    public ResponseEntity<TeamResponseDto.UpdateTeamDto> updateTeam(@PathVariable(name = "teamId") Long teamId, @RequestBody TeamRequestDto.UpdateTeamDto request) {
+        return null;
+    }
+
+    @DeleteMapping("/member/team/{teamId}")
+    public ResponseEntity<TeamResponseDto.DeleteTeamDto> deleteTeam(@PathVariable(name = "teamId") Long teamId) {
         return null;
     }
 }
