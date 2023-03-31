@@ -21,4 +21,12 @@ public class TeamResponseDto {
     public static class TeamListDto {
         private List<TeamDto> teamDtoList;
     }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class CreateTeamDto {
+        private String field;
+    }
 }
