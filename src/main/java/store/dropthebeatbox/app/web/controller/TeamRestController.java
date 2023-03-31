@@ -14,4 +14,8 @@ public class TeamRestController {
         return null;
     }
 
+    @GetMapping("/member/{memberId}/teams")
+    public ResponseEntity<TeamResponseDto.TeamListDto> getTeamListByMemberId(@PathVariable(name = "memberId") Long memberId) {
+        return null;
+    }
 }

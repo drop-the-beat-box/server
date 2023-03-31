@@ -2,6 +2,8 @@ package store.dropthebeatbox.app.web.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 public class TeamResponseDto {
 
     @Builder
@@ -10,5 +12,13 @@ public class TeamResponseDto {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class TeamDto {
         private String field;
+    }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class TeamListDto {
+        List<TeamDto> teamDtoList;
     }
 }
