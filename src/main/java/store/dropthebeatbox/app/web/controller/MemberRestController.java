@@ -1,9 +1,8 @@
 package store.dropthebeatbox.app.web.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import store.dropthebeatbox.app.web.dto.MemberRequestDto;
 import store.dropthebeatbox.app.web.dto.MemberResponseDto;
 
 @RestController
@@ -16,6 +15,11 @@ public class MemberRestController {
 
     @GetMapping("/team/{teamId}/members")
     public ResponseEntity<MemberResponseDto.MemberListDto> getMemberListByTeamId(@PathVariable(name = "teamId") Long teamId) {
+        return null;
+    }
+
+    @PostMapping("/team/{teamId}/member/{memberId}")
+    public ResponseEntity<MemberResponseDto.CreateMemberDto> createMemberInTeam(@PathVariable(name = "teamId") Long teamId, @PathVariable(name = "memberId") Long memberId) {
         return null;
     }
 }

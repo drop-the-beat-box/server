@@ -21,4 +21,12 @@ public class MemberResponseDto {
     public static class MemberListDto {
         private List<MemberDto> memberDtoList;
     }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class CreateMemberDto {
+        private String field;
+    }
 }
