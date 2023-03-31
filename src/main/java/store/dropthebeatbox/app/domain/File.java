@@ -28,6 +28,9 @@ public class File {
 
     private LocalDateTime deletedAt;
 
+    @OneToOne(mappedBy = "file", cascade = CascadeType.ALL)
+    private Uuid uuid;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "file_type_id")
     private FileType fileType;
