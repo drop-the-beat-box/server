@@ -27,4 +27,9 @@ public class FileRestController {
     public ResponseEntity<FileRequestDto.UpdateFileDto> updateFile(@RequestBody FileRequestDto.UpdateFileDto request){
         return null;
     }
+
+    @DeleteMapping("/member/file")
+    public ResponseEntity<FileResponseDto.DeleteFileDto> deletefile(@RequestBody FileResponseDto.DeleteFileDto request){
+        return null;
+    }
 }
