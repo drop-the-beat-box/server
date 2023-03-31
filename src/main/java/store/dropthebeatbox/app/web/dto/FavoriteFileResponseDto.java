@@ -19,4 +19,12 @@ public class FavoriteFileResponseDto {
     public static class FavoriteFileListDto{
         String filed;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class DeleteFavoriteFile{
+        String filed;
+    }
 }

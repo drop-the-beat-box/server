@@ -22,4 +22,9 @@ public class FavoriteFileRestController {
     public ResponseEntity<FavoriteFileRequestDto.CreateFavoriteFileDto> createFavoriteFile(@PathVariable(name = "fileId") Long fileId, @RequestBody FavoriteFileRequestDto.CreateFavoriteFileDto request){
         return  null;
     }
+
+    @DeleteMapping("/member/favorite/{fileId}")
+    public ResponseEntity<FavoriteFileResponseDto.DeleteFavoriteFile> deleteFavoriteFile(@PathVariable(name = "fileId") Long fileId){
+        return null;
+    }
 }
