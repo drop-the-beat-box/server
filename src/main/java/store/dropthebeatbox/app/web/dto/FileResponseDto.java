@@ -11,4 +11,12 @@ public class FileResponseDto {
     public static class FileDto{
         private String filed;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class FileListDto{
+        private String filed;
+    }
 }

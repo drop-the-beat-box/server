@@ -13,4 +13,9 @@ public class FileRestController {
     public ResponseEntity<FileResponseDto.FileDto> getFileByFileId(@PathVariable(name = "fileId") Long fileId){
         return null;
     }
+
+    @GetMapping("/member/files")
+    public ResponseEntity<FileResponseDto.FileListDto> getFileListByFiledId(){
+        return null;
+    }
 }
