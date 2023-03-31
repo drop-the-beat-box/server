@@ -13,4 +13,9 @@ public class MemberRestController {
     public ResponseEntity<MemberResponseDto.MemberDto> getMemberByMemberId(@PathVariable(name = "memberId") Long memberId) {
         return null;
     }
+
+    @GetMapping("/team/{teamId}/members")
+    public ResponseEntity<MemberResponseDto.MemberListDto> getMemberListByTeamId(@PathVariable(name = "teamId") Long teamId) {
+        return null;
+    }
 }

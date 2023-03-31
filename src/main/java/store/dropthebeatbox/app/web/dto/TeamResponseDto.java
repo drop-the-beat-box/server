@@ -19,6 +19,6 @@ public class TeamResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class TeamListDto {
-        List<TeamDto> teamDtoList;
+        private List<TeamDto> teamDtoList;
     }
 }
