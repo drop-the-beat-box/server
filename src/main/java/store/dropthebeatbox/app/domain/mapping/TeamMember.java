@@ -3,6 +3,7 @@ package store.dropthebeatbox.app.domain.mapping;
 import lombok.*;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.Team;
+import store.dropthebeatbox.app.domain.common.BaseEntity;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TeamMember {
+public class TeamMember extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,6 +2,7 @@ package store.dropthebeatbox.app.domain.mapping;
 
 import lombok.*;
 import store.dropthebeatbox.app.domain.Member;
+import store.dropthebeatbox.app.domain.common.BaseEntity;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class FriendRequest {
+public class FriendRequest extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

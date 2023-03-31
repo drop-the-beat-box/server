@@ -1,6 +1,7 @@
 package store.dropthebeatbox.app.domain;
 
 import lombok.*;
+import store.dropthebeatbox.app.domain.common.BaseEntity;
 
 import javax.persistence.*;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class FileType {
+public class FileType extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

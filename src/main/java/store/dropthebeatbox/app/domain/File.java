@@ -1,6 +1,7 @@
 package store.dropthebeatbox.app.domain;
 
 import lombok.*;
+import store.dropthebeatbox.app.domain.common.BaseEntity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class File {
+public class File extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

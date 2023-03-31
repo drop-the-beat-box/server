@@ -1,6 +1,7 @@
 package store.dropthebeatbox.app.domain;
 
 import lombok.*;
+import store.dropthebeatbox.app.domain.common.BaseEntity;
 import store.dropthebeatbox.app.domain.enums.AuthProviderType;
 import store.dropthebeatbox.app.domain.enums.MemberRole;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
