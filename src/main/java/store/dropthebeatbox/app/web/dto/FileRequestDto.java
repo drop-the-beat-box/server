@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 public class FileRequestDto {
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CreateFileDto{
         String filed;
     }
