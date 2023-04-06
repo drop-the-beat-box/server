@@ -2,6 +2,7 @@ package store.dropthebeatbox.app.web.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberResponseDto {
@@ -11,7 +12,10 @@ public class MemberResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class MemberDto {
-        private String field;
+        private Long memberId;
+        private String name;
+        private String email;
+        private String profile_url;
     }
 
     @Builder
@@ -20,6 +24,7 @@ public class MemberResponseDto {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class MemberListDto {
         private List<MemberDto> memberDtoList;
+        private Integer size;
     }
 
     @Builder
@@ -27,7 +32,8 @@ public class MemberResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CreateMemberDto {
-        private String field;
+        private Long memberId;
+        private LocalDateTime createdAt;
     }
 
     @Builder
@@ -35,7 +41,8 @@ public class MemberResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UpdateMemberDto {
-        private String field;
+        private Long memberId;
+        private LocalDateTime updatedAt;
     }
 
     @Builder
@@ -43,6 +50,6 @@ public class MemberResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class DeleteMemberDto {
-        private String field;
+        private LocalDateTime deletedAt;
     }
 }

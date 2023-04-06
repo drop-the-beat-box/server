@@ -2,16 +2,17 @@ package store.dropthebeatbox.app.web.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TeamResponseDto {
-
     @Builder
     @Getter
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class TeamDto {
-        private String field;
+        private Long teamId;
+        private String teamName;
     }
 
     @Builder
@@ -20,6 +21,7 @@ public class TeamResponseDto {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class TeamListDto {
         private List<TeamDto> teamDtoList;
+        private Integer size;
     }
 
     @Builder
@@ -27,7 +29,8 @@ public class TeamResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CreateTeamDto {
-        private String field;
+        private Long teamId;
+        private LocalDateTime createdAt;
     }
 
     @Builder
@@ -35,7 +38,8 @@ public class TeamResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UpdateTeamDto {
-        private String field;
+        private Long teamId;
+        private LocalDateTime updatedAt;
     }
 
     @Builder
@@ -43,6 +47,6 @@ public class TeamResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class DeleteTeamDto {
-        private String field;
+        private LocalDateTime deletedAt;
     }
 }
