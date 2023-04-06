@@ -19,7 +19,7 @@ public class FavoriteFileRestController {
     }
 
     @PostMapping("/member/favorite/{fileId}")
-    public ResponseEntity<FavoriteFileRequestDto.CreateFavoriteFileDto> createFavoriteFile(@PathVariable(name = "fileId") Long fileId, @RequestBody FavoriteFileRequestDto.CreateFavoriteFileDto request){
+    public ResponseEntity<FavoriteFileResponseDto.CreateFavoriteFileDto> createFavoriteFile(@PathVariable(name = "fileId") Long fileId){
         return  null;
     }
 
