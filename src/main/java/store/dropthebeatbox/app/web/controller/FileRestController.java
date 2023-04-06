@@ -1,5 +1,6 @@
 package store.dropthebeatbox.app.web.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.web.dto.FileRequestDto;
@@ -18,13 +19,13 @@ public class FileRestController {
         return null;
     }
 
-    @PostMapping("/member/file")
-    public ResponseEntity<FileRequestDto.CreateFileDto> createFile(@RequestBody FileRequestDto.CreateFileDto request){
+    @PostMapping(value = "/member/file", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<FileResponseDto.CreateFileDto> createFile(@ModelAttribute FileRequestDto.CreateFileDto request){
         return null;
     }
 
     @PatchMapping("/member/file")
-    public ResponseEntity<FileRequestDto.UpdateFileDto> updateFile(@RequestBody FileRequestDto.UpdateFileDto request){
+    public ResponseEntity<FileResponseDto.UpdateFileDto> updateFile(@RequestBody FileRequestDto.UpdateFileDto request){
         return null;
     }
 

@@ -7,8 +7,4 @@ import lombok.NoArgsConstructor;
 
 public class SharedFileRequestDto {
 
-    @Getter
-    public static class CreateSharedFileDto{
-        String filed;
-    }
 }

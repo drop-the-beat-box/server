@@ -2,14 +2,22 @@ package store.dropthebeatbox.app.web.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 public class FavoriteFileResponseDto {
 
     @Builder
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class FavoriteFileDto{
-        String filed;
+    public static class FavoriteFileDto {
+        private Long fileId;
+        private String name;
+        private String url;
+        private String description;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
     }
 
     @Builder
@@ -17,7 +25,8 @@ public class FavoriteFileResponseDto {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class FavoriteFileListDto{
-        String filed;
+        private List<FavoriteFileDto> favoriteFileDtoList;
+        private Integer size;
     }
 
     @Builder
@@ -25,6 +34,15 @@ public class FavoriteFileResponseDto {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class DeleteFavoriteFile{
-        String filed;
+        private LocalDateTime deletedAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class CreateFavoriteFileDto {
+        private Long favoriteFileId;
+        private LocalDateTime createdAt;
     }
 }
