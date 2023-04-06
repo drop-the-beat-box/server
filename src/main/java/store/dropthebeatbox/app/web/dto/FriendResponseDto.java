@@ -23,7 +23,7 @@ public class FriendResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class FriendRequestDto {
-        private Long id;
+        private Long friendRequestId;
         private String name;
         private String profileUrl;
     }
