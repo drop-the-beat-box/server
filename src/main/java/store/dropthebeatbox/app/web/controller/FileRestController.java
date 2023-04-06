@@ -20,12 +20,12 @@ public class FileRestController {
     }
 
     @PostMapping(value = "/member/file", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<FileRequestDto.CreateFileDto> createFile(@ModelAttribute FileRequestDto.CreateFileDto request){
+    public ResponseEntity<FileResponseDto.CreateFileDto> createFile(@ModelAttribute FileRequestDto.CreateFileDto request){
         return null;
     }
 
     @PatchMapping("/member/file")
-    public ResponseEntity<FileRequestDto.UpdateFileDto> updateFile(@RequestBody FileRequestDto.UpdateFileDto request){
+    public ResponseEntity<FileResponseDto.UpdateFileDto> updateFile(@RequestBody FileRequestDto.UpdateFileDto request){
         return null;
     }
 
