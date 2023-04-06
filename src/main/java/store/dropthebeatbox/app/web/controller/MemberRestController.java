@@ -1,5 +1,6 @@
 package store.dropthebeatbox.app.web.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.web.dto.MemberRequestDto;
@@ -23,8 +24,8 @@ public class MemberRestController {
         return null;
     }
 
-    @PatchMapping("/team/member")
-    public ResponseEntity<MemberResponseDto.UpdateMemberDto> updateMember(@RequestBody MemberRequestDto.UpdateMemberDto request) {
+    @PatchMapping(value = "/team/member", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<MemberResponseDto.UpdateMemberDto> updateMember(@ModelAttribute MemberRequestDto.UpdateMemberDto request) {
         return null;
     }
 
