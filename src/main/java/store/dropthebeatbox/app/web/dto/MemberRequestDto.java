@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;
 
 public class MemberRequestDto {
-    @Getter
+    @Getter @
     public static class UpdateMemberDto {
         private String name;
         private MultipartFile profileImage;
