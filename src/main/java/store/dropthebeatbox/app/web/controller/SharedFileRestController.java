@@ -9,12 +9,12 @@ import store.dropthebeatbox.app.web.dto.SharedFileResponseDto;
 public class SharedFileRestController {
 
     @GetMapping("/shared/{fileId}/members")
-    public ResponseEntity<SharedFileResponseDto.sharedMemberListDto> getMemberListByShared(@PathVariable(name = "fileId") Long fileId){
+    public ResponseEntity<SharedFileResponseDto.SharedMemberListDto> getMemberListByShared(@PathVariable(name = "fileId") Long fileId){
         return null;
     }
 
     @PostMapping("/shared/{fileId}/member/{memberId}")
-    public ResponseEntity<SharedFileRequestDto.CreateSharedFileDto> createSharedFile(@PathVariable(name = "fileId")Long fileId,@PathVariable(name = "memberId") Long memberId, @RequestBody SharedFileRequestDto.CreateSharedFileDto request){
+    public ResponseEntity<SharedFileResponseDto.CreateSharedFileDto> createSharedFile(@PathVariable(name = "fileId")Long fileId, @PathVariable(name = "memberId") Long memberId){
         return null;
     }
 
