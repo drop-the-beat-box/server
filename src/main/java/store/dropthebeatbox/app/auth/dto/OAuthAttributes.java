@@ -28,10 +28,6 @@ public class OAuthAttributes {
         this.authProviderType = authProviderType;
     }
 
-    private void setProfileImage(String randomProfileImageUrl) {
-        picture = randomProfileImageUrl;
-    }
-
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
         if ("naver".equals(registrationId)) return ofNaver("id", attributes);
         if ("kakao".equals(registrationId)) return ofKakao("id", attributes);
@@ -40,6 +36,7 @@ public class OAuthAttributes {
     }
 
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
+
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))

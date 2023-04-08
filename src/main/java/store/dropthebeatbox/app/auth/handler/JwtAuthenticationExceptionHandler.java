@@ -18,7 +18,6 @@ import java.io.PrintWriter;
 
 
 public class JwtAuthenticationExceptionHandler extends OncePerRequestFilter {
-    private final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationExceptionHandler.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

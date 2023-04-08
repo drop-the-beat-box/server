@@ -26,7 +26,6 @@ import java.util.Map;
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final TokenProvider tokenProvider;
-    private final ObjectMapper mapper;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -34,7 +33,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         OAuthAttributes attributes = OAuthAttributes.of("kakao", null, oAuth2User.getAttributes());
-        Map<String, Object> modifiableAttributes = new HashMap<>(attributes.getAttributes());
 
         String email = attributes.getEmail();
         String accessToken = tokenProvider.createAccessToken(email, authentication.getAuthorities());

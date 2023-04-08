@@ -48,17 +48,16 @@ public class SecurityConfig  {
         return http.csrf().disable()
                  /**401, 403 Exception 핸들링 */
                 .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler)
+                    .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                    .accessDeniedHandler(jwtAccessDeniedHandler)
 
                  /**세션 사용하지 않음*/
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/").permitAll()
+                    .antMatchers("/").permitAll()
 
                 .and()
-                .apply(new JwtSecurityConfig(tokenProvider))
+                    .apply(new JwtSecurityConfig(tokenProvider))
                 .and()
                 .oauth2Login()
                         .successHandler(oAuth2AuthenticationSuccessHandler)

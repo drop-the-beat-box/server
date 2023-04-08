@@ -54,22 +54,6 @@ public class TokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    /**token 생성 algorithm */
-    public String createAccessToken(Authentication authentication){
-        String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
-        long now = (new Date()).getTime();
-        Date validity = new Date(now + this.accessTokenValidityInMilliseconds);
-
-        return Jwts.builder()
-                .setSubject(authentication.getName())
-                .claim(AUTHORITIES_KEY, authorities)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .setExpiration(validity)
-                .compact();
-    }
-
 
     /**token 생성 algorithm */
     public String createAccessToken(String name, Collection<? extends GrantedAuthority> authorities){

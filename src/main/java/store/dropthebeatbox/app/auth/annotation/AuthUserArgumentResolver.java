@@ -40,7 +40,6 @@ public class AuthUserArgumentResolver implements HandlerMethodArgumentResolver {
         System.out.println("auth" + authentication.getPrincipal());
 
         if (authentication != null) {
-            principal = authentication.getPrincipal();
         }
         if (principal == null || principal.getClass() == String.class) {
             throw new MemberException(ErrorCode.MEMBER_NOT_FOUND);
