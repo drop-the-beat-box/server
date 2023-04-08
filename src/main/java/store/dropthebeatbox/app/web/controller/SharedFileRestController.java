@@ -2,7 +2,6 @@ package store.dropthebeatbox.app.web.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import store.dropthebeatbox.app.web.dto.SharedFileRequestDto;
 import store.dropthebeatbox.app.web.dto.SharedFileResponseDto;
 
 @RestController
