@@ -10,4 +10,6 @@ public interface TeamService {
     Team update(Long teamId, TeamRequestDto.UpdateTeamDto request);
 
     void delete(Long teamId);
+
+    Team findById(Long teamId);
 }

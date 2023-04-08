@@ -35,4 +35,11 @@ public class TeamConverter {
                 .deletedAt(LocalDateTime.now())
                 .build();
     }
+
+    public static TeamResponseDto.TeamDto toTeamDto(Team team) {
+        return TeamResponseDto.TeamDto.builder()
+                .teamId(team.getId())
+                .teamName(team.getName())
+                .build();
+    }
 }

@@ -38,4 +38,9 @@ public class TeamServiceImpl implements TeamService {
         teamRepository.deleteById(teamId);
         return;
     }
+
+    @Override
+    public Team findById(Long teamId) {
+        return teamRepository.findById(teamId).get();
+    }
 }

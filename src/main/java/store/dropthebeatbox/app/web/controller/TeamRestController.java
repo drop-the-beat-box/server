@@ -19,7 +19,8 @@ public class TeamRestController {
 
     @GetMapping("/member/team/{teamId}")
     public ResponseEntity<TeamResponseDto.TeamDto> getTeamByTeamId(@PathVariable(name = "teamId") Long teamId) {
-        return null;
+        Team team = teamService.findById(teamId);
+        return ResponseEntity.ok(TeamConverter.toTeamDto(team));
     }
 
     @GetMapping("/member/{memberId}/teams")
