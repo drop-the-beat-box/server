@@ -8,4 +8,6 @@ public interface TeamService {
     Team create(TeamRequestDto.CreateTeamDto request, Member member);
 
     Team update(Long teamId, TeamRequestDto.UpdateTeamDto request);
+
+    void delete(Long teamId);
 }

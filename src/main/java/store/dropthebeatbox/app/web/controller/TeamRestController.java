@@ -41,6 +41,7 @@ public class TeamRestController {
 
     @DeleteMapping("/member/team/{teamId}")
     public ResponseEntity<TeamResponseDto.DeleteTeamDto> deleteTeam(@PathVariable(name = "teamId") Long teamId) {
-        return null;
+        teamService.delete(teamId);
+        return ResponseEntity.ok(TeamConverter.toDeleteTeamDto());
     }
 }

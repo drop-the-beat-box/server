@@ -31,4 +31,11 @@ public class TeamServiceImpl implements TeamService {
         team.setName(request.getName());
         return team;
     }
+
+    @Transactional
+    @Override
+    public void delete(Long teamId) {
+        teamRepository.deleteById(teamId);
+        return;
+    }
 }

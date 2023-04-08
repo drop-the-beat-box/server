@@ -5,10 +5,12 @@ import store.dropthebeatbox.app.domain.Team;
 import store.dropthebeatbox.app.web.dto.TeamRequestDto;
 import store.dropthebeatbox.app.web.dto.TeamResponseDto;
 
+import java.time.LocalDateTime;
+
 public class TeamConverter {
 
     public static TeamResponseDto.CreateTeamDto toCreateTeamDto(Team team) {
-        return  TeamResponseDto.CreateTeamDto.builder()
+        return TeamResponseDto.CreateTeamDto.builder()
                 .teamId(team.getId())
                 .createdAt(team.getCreatedAt())
                 .build();
@@ -25,6 +27,12 @@ public class TeamConverter {
         return TeamResponseDto.UpdateTeamDto.builder()
                 .teamId(team.getId())
                 .updatedAt(team.getUpdatedAt())
+                .build();
+    }
+
+    public static TeamResponseDto.DeleteTeamDto toDeleteTeamDto() {
+        return TeamResponseDto.DeleteTeamDto.builder()
+                .deletedAt(LocalDateTime.now())
                 .build();
     }
 }
