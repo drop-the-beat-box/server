@@ -6,6 +6,8 @@ import store.dropthebeatbox.app.web.dto.TeamRequestDto;
 import store.dropthebeatbox.app.web.dto.TeamResponseDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TeamConverter {
 
@@ -40,6 +42,19 @@ public class TeamConverter {
         return TeamResponseDto.TeamDto.builder()
                 .teamId(team.getId())
                 .teamName(team.getName())
+                .build();
+    }
+
+    private static List<TeamResponseDto.TeamDto> toTeamDtoList(List<Team> teamList) {
+        return teamList.stream()
+                .map(team -> toTeamDto(team))
+                .collect(Collectors.toList());
+    }
+
+    public static TeamResponseDto.TeamListDto toTeamListDto(List<Team> teamList) {
+        return TeamResponseDto.TeamListDto.builder()
+                .teamDtoList(toTeamDtoList(teamList))
+                .size(teamList.size())
                 .build();
     }
 }

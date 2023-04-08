@@ -11,6 +11,8 @@ import store.dropthebeatbox.app.service.TeamService;
 import store.dropthebeatbox.app.web.dto.TeamRequestDto;
 import store.dropthebeatbox.app.web.dto.TeamResponseDto;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class TeamRestController {
@@ -23,9 +25,10 @@ public class TeamRestController {
         return ResponseEntity.ok(TeamConverter.toTeamDto(team));
     }
 
-    @GetMapping("/member/{memberId}/teams")
-    public ResponseEntity<TeamResponseDto.TeamListDto> getTeamListByMemberId(@PathVariable(name = "memberId") Long memberId) {
-        return null;
+    @GetMapping("/member/teams")
+    public ResponseEntity<TeamResponseDto.TeamListDto> getTeamListByMemberId(@AuthUser Member member) {
+        List<Team> teamList = teamService.findByMember(member);
+        return ResponseEntity.ok(TeamConverter.toTeamListDto(teamList));
     }
 
     @PostMapping("/member/team")
