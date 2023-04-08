@@ -30,4 +30,9 @@ public class Member extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String profileUrl;
+
+    public Member update(String name) {
+        this.name = name;
+        return this;
+    }
 }
