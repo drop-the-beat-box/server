@@ -18,4 +18,8 @@ public class Team extends BaseEntity {
 
     @Column(length = 30)
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 }

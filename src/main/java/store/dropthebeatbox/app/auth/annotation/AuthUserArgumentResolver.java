@@ -37,16 +37,14 @@ public class AuthUserArgumentResolver implements HandlerMethodArgumentResolver {
         Object principal = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        System.out.println("auth" + authentication.getPrincipal());
-
         if (authentication != null) {
+            principal = authentication.getPrincipal();
         }
         if (principal == null || principal.getClass() == String.class) {
             throw new MemberException(ErrorCode.MEMBER_NOT_FOUND);
         }
 
         UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) authentication;
-
         Member member = MemberConverter.toMember(authenticationToken.getName());
         return member;
     }
