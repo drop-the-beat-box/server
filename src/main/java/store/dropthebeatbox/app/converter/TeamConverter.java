@@ -20,4 +20,11 @@ public class TeamConverter {
                 .member(member)
                 .build();
     }
+
+    public static TeamResponseDto.UpdateTeamDto toUpdateTeamDto(Team team) {
+        return TeamResponseDto.UpdateTeamDto.builder()
+                .teamId(team.getId())
+                .updatedAt(team.getUpdatedAt())
+                .build();
+    }
 }

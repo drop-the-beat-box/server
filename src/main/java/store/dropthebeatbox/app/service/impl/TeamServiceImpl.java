@@ -23,4 +23,12 @@ public class TeamServiceImpl implements TeamService {
         Team team = TeamConverter.toTeam(request, member);
         return teamRepository.save(team);
     }
+
+    @Transactional
+    @Override
+    public Team update(Long teamId, TeamRequestDto.UpdateTeamDto request) {
+        Team team = teamRepository.findById(teamId).get();
+        team.setName(request.getName());
+        return team;
+    }
 }
