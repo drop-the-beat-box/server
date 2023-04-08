@@ -3,8 +3,8 @@ package store.dropthebeatbox.app.web.controller;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import store.dropthebeatbox.app.web.dto.MemberRequestDto;
 import store.dropthebeatbox.app.web.dto.MemberResponseDto;
+import store.dropthebeatbox.app.web.dto.MemberRequestDto;
 
 @RestController
 public class MemberRestController {
