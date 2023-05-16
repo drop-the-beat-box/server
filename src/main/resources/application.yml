@@ -53,3 +53,5 @@ jwt:
   access-token-validity-in-seconds: 1800000 # 30 m
   refresh-token-validity-in-seconds: 1210000000 # 14 d
 
+springdoc:
+  use-fqn: true

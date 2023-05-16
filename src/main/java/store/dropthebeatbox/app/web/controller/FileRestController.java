@@ -1,11 +1,13 @@
 package store.dropthebeatbox.app.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.web.dto.FileRequestDto;
 import store.dropthebeatbox.app.web.dto.FileResponseDto;
 
+@Tag(name = "File API", description = "파일 조회, 등록, 수정, 삭제")
 @RestController
 public class FileRestController {
 
