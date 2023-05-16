@@ -1,9 +1,11 @@
 package store.dropthebeatbox.app.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.web.dto.FriendResponseDto;
 
+@Tag(name = "Friend API", description = "친구 요청, 수락, 조회, 삭제")
 @RestController
 public class FriendRestController {
 

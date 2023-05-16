@@ -1,11 +1,13 @@
 package store.dropthebeatbox.app.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.web.dto.MemberResponseDto;
 import store.dropthebeatbox.app.web.dto.MemberRequestDto;
 
+@Tag(name = "Member API", description = "멤버 조회, 추가, 수정, 삭제")
 @RestController
 public class MemberRestController {
 

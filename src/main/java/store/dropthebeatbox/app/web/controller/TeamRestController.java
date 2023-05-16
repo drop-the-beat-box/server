@@ -1,5 +1,6 @@
 package store.dropthebeatbox.app.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import store.dropthebeatbox.app.web.dto.TeamResponseDto;
 
 import java.util.List;
 
+@Tag(name = "Team API", description = "팀 조회, 추가, 수정, 삭제")
 @RestController
 @RequiredArgsConstructor
 public class TeamRestController {
