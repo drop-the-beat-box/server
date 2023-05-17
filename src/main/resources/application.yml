@@ -55,3 +55,19 @@ jwt:
 
 springdoc:
   use-fqn: true
+
+cloud:
+  aws:
+    s3:
+      bucket: field-mate
+      folder:
+        dtbb: dtbb
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${aws.access.key.id}
+      secretKey: ${aws.secret.access.key}
+    cloudFront:
+      distributionDomain: https://d3j1uqx77q4q2.cloudfront.net
