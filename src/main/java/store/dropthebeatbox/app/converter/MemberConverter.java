@@ -8,8 +8,12 @@ import store.dropthebeatbox.app.domain.enums.AuthProviderType;
 import store.dropthebeatbox.app.exception.MemberException;
 import store.dropthebeatbox.app.exception.common.ErrorCode;
 import store.dropthebeatbox.app.repository.MemberRepository;
+import store.dropthebeatbox.app.web.dto.MemberResponseDto;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -25,5 +29,44 @@ public class MemberConverter {
 
     public static Member toMember(String email) {
         return staticMemberRepository.findByEmailAndAuthProviderType(email, AuthProviderType.KAKAO).orElseThrow(() -> new MemberException(ErrorCode.MEMBER_NOT_FOUND));
+    }
+
+    public static MemberResponseDto.MemberDto toMemberDto(Member member){
+        return MemberResponseDto.MemberDto.builder()
+                .memberId(member.getId())
+                .name(member.getName())
+                .email(member.getEmail())
+                .profileUrl(member.getProfileUrl())
+                .build();
+    }
+
+    public static MemberResponseDto.MemberListDto memberListDto(List<Member> memberList){
+        List<MemberResponseDto.MemberDto> memberDtoList = memberList.stream()
+                .map(member -> toMemberDto(member))
+                .collect(Collectors.toList());
+        return MemberResponseDto.MemberListDto.builder()
+                .memberDtoList(memberDtoList)
+                .size(memberDtoList.size())
+                .build();
+    }
+
+    public static MemberResponseDto.JoinMemberDto joinMemberDto(Long memberId, Long teamId){
+        return MemberResponseDto.JoinMemberDto.builder()
+                .memberId(memberId)
+                .teamId(teamId)
+                .build();
+    }
+
+    public static MemberResponseDto.UpdateMemberDto updateMemberDto(Member member){
+        return MemberResponseDto.UpdateMemberDto.builder()
+                .memberId(member.getId())
+                .updatedAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static MemberResponseDto.DeleteMemberDto deleteMemberDto(){
+        return MemberResponseDto.DeleteMemberDto.builder()
+                .deletedAt(LocalDateTime.now())
+                .build();
     }
 }

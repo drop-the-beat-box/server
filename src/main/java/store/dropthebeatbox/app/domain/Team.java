@@ -20,6 +20,6 @@ public class Team extends BaseEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "leader_id")
+    private Member leader;
 }
