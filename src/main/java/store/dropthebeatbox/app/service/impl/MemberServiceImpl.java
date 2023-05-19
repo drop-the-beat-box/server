@@ -48,7 +48,8 @@ public class MemberServiceImpl implements MemberService {
         teamMemberRepository.save(teamMember);
         return member;
     }
-
+    
+    @Transactional
     @Override
     public Member update(Long memberId, MemberRequestDto.UpdateMemberDto request) {
         Member member = memberRepository.findById(memberId).get();
