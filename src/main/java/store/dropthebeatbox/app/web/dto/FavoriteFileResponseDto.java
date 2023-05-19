@@ -43,6 +43,8 @@ public class FavoriteFileResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CreateFavoriteFileDto {
         private Long favoriteFileId;
+        private Long fileId;
+        private Long memberId;
         private LocalDateTime createdAt;
     }
 }
