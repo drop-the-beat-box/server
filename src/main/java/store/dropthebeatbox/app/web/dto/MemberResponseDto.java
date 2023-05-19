@@ -15,7 +15,16 @@ public class MemberResponseDto {
         private Long memberId;
         private String name;
         private String email;
-        private String profile_url;
+        private String profileUrl;
+    }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class JoinMemberDto {
+        private Long memberId;
+        private Long teamId;
     }
 
     @Builder
