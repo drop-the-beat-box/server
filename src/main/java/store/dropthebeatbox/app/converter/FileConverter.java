@@ -1,15 +1,37 @@
 package store.dropthebeatbox.app.converter;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import store.dropthebeatbox.app.domain.File;
+import store.dropthebeatbox.app.domain.FileType;
+import store.dropthebeatbox.app.domain.Member;
+import store.dropthebeatbox.app.domain.Uuid;
+import store.dropthebeatbox.app.repository.FileRepository;
+import store.dropthebeatbox.app.repository.FileTypeRepository;
+import store.dropthebeatbox.app.web.dto.FileRequestDto;
 import store.dropthebeatbox.app.web.dto.FileResponseDto;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
+@RequiredArgsConstructor
 public class FileConverter {
+
+    private final FileTypeRepository fileTypeRepository;
+
+    private static FileTypeRepository staticFileTypeRepository;
+
+    @PostConstruct
+    public void init() {
+        staticFileTypeRepository = this.fileTypeRepository;
+    }
 
     public static FileResponseDto.FileDto toFileDto(File file) {
         return FileResponseDto.FileDto.builder()
@@ -52,6 +74,30 @@ public class FileConverter {
         return FileResponseDto.DeleteFileDto.builder()
                 .fileId(fileId)
                 .deletedAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static File toFile(FileRequestDto.CreateFileDto request, String fileUrl, Uuid uuid, Member member) {
+
+        MultipartFile requestFile = request.getFile();
+        String extension = StringUtils.getFilenameExtension(requestFile.getOriginalFilename());
+        String nameWithoutExtension = requestFile.getOriginalFilename().substring(0, requestFile.getOriginalFilename().lastIndexOf('.'));
+        FileType fileType;
+        if(staticFileTypeRepository.existsByName(extension)) {
+            fileType = staticFileTypeRepository.findByName(extension).get();
+        } else {
+            fileType = staticFileTypeRepository.save(FileType.builder().name(extension).build());
+        }
+
+        return File.builder()
+                .name(nameWithoutExtension)
+                .url(fileUrl)
+                .description(request.getDescription())
+                .isDeleted(Boolean.FALSE)
+                .deletedAt(null)
+                .uuid(uuid)
+                .fileType(fileType)
+                .member(member)
                 .build();
     }
 }

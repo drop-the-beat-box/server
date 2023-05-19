@@ -4,6 +4,7 @@ import store.dropthebeatbox.app.domain.File;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.web.dto.FileRequestDto;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface FileService {
@@ -11,9 +12,9 @@ public interface FileService {
 
     List<File> findByMember(Member member);
 
-    File create(FileRequestDto.CreateFileDto request);
+    File create(FileRequestDto.CreateFileDto request, Member member);
 
-    File update(FileRequestDto.UpdateFileDto request);
+    File update(Long fileId, FileRequestDto.UpdateFileDto request);
 
     void delete(Long fileId);
 }

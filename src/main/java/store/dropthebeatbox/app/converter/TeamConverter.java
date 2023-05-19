@@ -21,7 +21,7 @@ public class TeamConverter {
     public static Team toTeam(TeamRequestDto.CreateTeamDto request, Member member) {
         return Team.builder()
                 .name(request.getName())
-                .member(member)
+                .leader(member)
                 .build();
     }
 

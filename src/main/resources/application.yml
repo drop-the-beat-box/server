@@ -60,8 +60,7 @@ cloud:
   aws:
     s3:
       bucket: field-mate
-      folder:
-        dtbb: dtbb
+      folder: dtbb
     region:
       static: ap-northeast-2
     stack:

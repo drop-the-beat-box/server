@@ -29,7 +29,8 @@ public class File extends BaseEntity {
 
     private LocalDateTime deletedAt;
 
-    @OneToOne(mappedBy = "file", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "uuid_id")
     private Uuid uuid;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,4 +40,9 @@ public class File extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    // setter
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
