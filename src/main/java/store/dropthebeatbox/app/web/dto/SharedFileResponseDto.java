@@ -13,7 +13,6 @@ public class SharedFileResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class SharedMemberDto {
         private Long memberId;
-        private Long fileId;
         private String email;
         private String name;
         private String profileUrl;
@@ -42,6 +41,8 @@ public class SharedFileResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CreateSharedFileDto {
         private Long sharedFileId;
+        private Long fileId;
+        private Long memberId;
         private LocalDateTime createdAt;
     }
 }
