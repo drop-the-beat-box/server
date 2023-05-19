@@ -64,7 +64,7 @@ public class MemberConverter {
                 .build();
     }
 
-    public static MemberResponseDto.DeleteMemberDto deleteMemberDto(){
+    public static MemberResponseDto.DeleteMemberDto toDeleteMemberDto(){
         return MemberResponseDto.DeleteMemberDto.builder()
                 .deletedAt(LocalDateTime.now())
                 .build();

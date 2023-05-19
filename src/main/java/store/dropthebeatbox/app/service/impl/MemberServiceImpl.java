@@ -3,6 +3,7 @@ package store.dropthebeatbox.app.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import store.dropthebeatbox.app.converter.TeamMemberConverter;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.Team;
 import store.dropthebeatbox.app.domain.mapping.TeamMember;
@@ -41,10 +42,7 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberRepository.findById(memberId).get();
         Team team = teamRepository.findById(teamId).get();
 
-        TeamMember teamMember = TeamMember.builder()
-                .member(member)
-                .team(team)
-                .build();
+        TeamMember teamMember = TeamMemberConverter.toTeamMember(team, member);
         teamMemberRepository.save(teamMember);
         return member;
     }
@@ -53,8 +51,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member update(Long memberId, MemberRequestDto.UpdateMemberDto request) {
         Member member = memberRepository.findById(memberId).get();
-        member.setName(request.getName());
-        member.setProfileUrl(request.getProfileImage().getName());
+        member.update(request.getName(), request.getProfileImage().getName());
 
         return member;
     }

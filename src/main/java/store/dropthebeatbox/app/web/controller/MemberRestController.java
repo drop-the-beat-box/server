@@ -30,24 +30,24 @@ public class MemberRestController {
     @GetMapping("/team/{teamId}/members")
     public ResponseEntity<MemberResponseDto.MemberListDto> getMemberListByTeamId(@PathVariable(name = "teamId") Long teamId) {
         List<Member> memberList = memberService.findAllByTeamId(teamId);
-        return ResponseEntity.ok(MemberConverter.memberListDto(memberList));
+        return ResponseEntity.ok(MemberConverter.toMemberListDto(memberList));
     }
 
     @PostMapping("/team/{teamId}/member/{memberId}")
     public ResponseEntity<MemberResponseDto.JoinMemberDto> createMemberInTeam(@PathVariable(name = "teamId") Long teamId, @PathVariable(name = "memberId") Long memberId) {
         Member member = memberService.insertToTeam(memberId,teamId);
-        return ResponseEntity.ok(MemberConverter.joinMemberDto(memberId, teamId));
+        return ResponseEntity.ok(MemberConverter.toJoinMemberDto(memberId, teamId));
     }
 
     @PatchMapping(value = "/team/member", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<MemberResponseDto.UpdateMemberDto> updateMember(@ModelAttribute MemberRequestDto.UpdateMemberDto request, @AuthUser Member member) {
         Member updatedMember = memberService.update(member.getId(), request);
-        return ResponseEntity.ok(MemberConverter.updateMemberDto(updatedMember));
+        return ResponseEntity.ok(MemberConverter.toUpdateMemberDto(updatedMember));
     }
 
     @DeleteMapping("/team/member")
     public ResponseEntity<MemberResponseDto.DeleteMemberDto> deleteMember(@AuthUser Member member) {
         memberService.delete(member.getId());
-        return ResponseEntity.ok(MemberConverter.deleteMemberDto());
+        return ResponseEntity.ok(MemberConverter.toDeleteMemberDto());
     }
 }
