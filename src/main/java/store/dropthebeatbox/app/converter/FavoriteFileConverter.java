@@ -1,6 +1,7 @@
 package store.dropthebeatbox.app.converter;
 
 import store.dropthebeatbox.app.domain.File;
+import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.mapping.FavoriteFile;
 import store.dropthebeatbox.app.web.dto.FavoriteFileResponseDto;
 import store.dropthebeatbox.app.web.dto.FileResponseDto;
@@ -46,6 +47,13 @@ public class FavoriteFileConverter {
     public static FavoriteFileResponseDto.DeleteFavoriteFile toDeleteFavoriteFile() {
         return FavoriteFileResponseDto.DeleteFavoriteFile.builder()
                 .deletedAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static FavoriteFile toFavoriteFile(File file, Member member) {
+        return FavoriteFile.builder()
+                .file(file)
+                .member(member)
                 .build();
     }
 }
