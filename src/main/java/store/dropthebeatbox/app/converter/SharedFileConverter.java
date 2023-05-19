@@ -1,5 +1,6 @@
 package store.dropthebeatbox.app.converter;
 
+import store.dropthebeatbox.app.domain.File;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.mapping.SharedFile;
 import store.dropthebeatbox.app.web.dto.SharedFileResponseDto;
@@ -43,6 +44,13 @@ public class SharedFileConverter {
     public static SharedFileResponseDto.DeleteSharedMemberDto toDeleteSharedMemberDto() {
         return SharedFileResponseDto.DeleteSharedMemberDto.builder()
                 .deletedAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static SharedFile toSharedFile(File file, Member member) {
+        return SharedFile.builder()
+                .file(file)
+                .member(member)
                 .build();
     }
 }
