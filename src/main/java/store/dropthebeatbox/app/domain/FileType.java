@@ -16,6 +16,6 @@ public class FileType extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 200)
+    @Column(length = 200, unique = true)
     private String name;
 }

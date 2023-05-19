@@ -42,7 +42,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .addServersItem(new Server().url("/"))
                 .info(info)
-                // .addSecurityItem(securityRequirement)
+                .addSecurityItem(securityRequirement)
                 .components(components);
     }
 }

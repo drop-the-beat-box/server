@@ -17,8 +17,4 @@ public class Uuid extends BaseEntity {
 
     @Column(unique = true)
     private String uuid;
-
-    @OneToOne
-    @JoinColumn(name = "file_id")
-    private File file;
 }
