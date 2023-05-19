@@ -40,7 +40,7 @@ public class MemberConverter {
                 .build();
     }
 
-    public static MemberResponseDto.MemberListDto memberListDto(List<Member> memberList){
+    public static MemberResponseDto.MemberListDto toMemberListDto(List<Member> memberList){
         List<MemberResponseDto.MemberDto> memberDtoList = memberList.stream()
                 .map(member -> toMemberDto(member))
                 .collect(Collectors.toList());
@@ -50,14 +50,14 @@ public class MemberConverter {
                 .build();
     }
 
-    public static MemberResponseDto.JoinMemberDto joinMemberDto(Long memberId, Long teamId){
+    public static MemberResponseDto.JoinMemberDto toJoinMemberDto(Long memberId, Long teamId){
         return MemberResponseDto.JoinMemberDto.builder()
                 .memberId(memberId)
                 .teamId(teamId)
                 .build();
     }
 
-    public static MemberResponseDto.UpdateMemberDto updateMemberDto(Member member){
+    public static MemberResponseDto.UpdateMemberDto toUpdateMemberDto(Member member){
         return MemberResponseDto.UpdateMemberDto.builder()
                 .memberId(member.getId())
                 .updatedAt(LocalDateTime.now())
