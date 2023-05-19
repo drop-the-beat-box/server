@@ -20,11 +20,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    final TeamMemberRepository teamMemberRepository;
+    private final TeamMemberRepository teamMemberRepository;
 
-    final TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
 
     @Override
     public Member findById(Long memberId) {
@@ -50,10 +50,10 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     @Override
     public Member update(Long memberId, MemberRequestDto.UpdateMemberDto request) {
-        Member member = memberRepository.findById(memberId).get();
-        member.update(request.getName(), request.getProfileImage().getName());
+        Member updatedMember = memberRepository.findById(memberId).get();
+        updatedMember = updatedMember.SetNameAndProfile(request.getName(), request.getProfileImage().getName());
 
-        return member;
+        return updatedMember;
     }
 
     @Override
