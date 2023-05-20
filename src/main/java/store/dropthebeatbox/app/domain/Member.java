@@ -32,7 +32,12 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String profileUrl;
 
-    public Member update(String name, String profileUrl) {
+    public Member update(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Member SetNameAndProfile(String name, String profileUrl){
         this.name = name;
         this.profileUrl = profileUrl;
         return this;
