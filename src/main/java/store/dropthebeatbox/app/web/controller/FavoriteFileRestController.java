@@ -13,6 +13,7 @@ import store.dropthebeatbox.app.domain.File;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.mapping.FavoriteFile;
 import store.dropthebeatbox.app.service.FavoriteFileService;
+import store.dropthebeatbox.app.validation.annotation.ExistFile;
 import store.dropthebeatbox.app.web.dto.FavoriteFileResponseDto;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class FavoriteFileRestController {
             @Parameter(name = "member", hidden = true)
     })
     @PostMapping("/member/favorite/{fileId}")
-    public ResponseEntity<FavoriteFileResponseDto.CreateFavoriteFileDto> createFavoriteFile(@PathVariable(name = "fileId") Long fileId, @AuthUser Member member){
+    public ResponseEntity<FavoriteFileResponseDto.CreateFavoriteFileDto> createFavoriteFile(@PathVariable(name = "fileId") @ExistFile Long fileId, @AuthUser Member member){
         FavoriteFile favoriteFile = favoriteFileService.create(fileId, member);
         return ResponseEntity.ok(FavoriteFileConverter.toCreateFavoriteFileDto(favoriteFile));
     }
@@ -49,7 +50,7 @@ public class FavoriteFileRestController {
             @Parameter(name = "member", hidden = true)
     })
     @DeleteMapping("/member/favorite/{fileId}")
-    public ResponseEntity<FavoriteFileResponseDto.DeleteFavoriteFile> deleteFavoriteFile(@PathVariable(name = "fileId") Long fileId, @AuthUser Member member){
+    public ResponseEntity<FavoriteFileResponseDto.DeleteFavoriteFile> deleteFavoriteFile(@PathVariable(name = "fileId") @ExistFile Long fileId, @AuthUser Member member){
         favoriteFileService.delete(fileId, member);
         return ResponseEntity.ok(FavoriteFileConverter.toDeleteFavoriteFile());
     }

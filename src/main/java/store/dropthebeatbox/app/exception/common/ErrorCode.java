@@ -23,35 +23,8 @@ public enum ErrorCode {
     MEMBER_UPDATE_SAME(HttpStatus.CONFLICT, "본인 정보는 내 정보 수정을 이용하세요."),
     PHONE_NUMBER_ALREADY_EXISTS(HttpStatus.BAD_REQUEST, "중복된 휴대폰번호입니다."),
 
-    // Task
-    TASK_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 업무가 존재하지 않습니다."),
-    TASK_ACCESS_DENIED(HttpStatus.FORBIDDEN, "본인 회사의 업무에만 접근할 수 있습니다."),
-    TASK_UPDATE_ACCESS_DENIED(HttpStatus.FORBIDDEN, "본인의 업무만 수정할 수 있습니다."),
-
-    // Company
-    COMPANY_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 회사가 존재하지 않습니다."),
-    COMPANY_ACCESS_DENIED(HttpStatus.FORBIDDEN, "본인 회사의 데이터만 접근할 수 있습니다."),
-    COMPANY_ALREADY_EXISTS(HttpStatus.CONFLICT, "이미 속한 회사가 있습니다."),
-
-    // Business
-    BUSINESS_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 사업이 존재하지 않습니다."),
-    BUSINESS_ACCESS_DENIED(HttpStatus.FORBIDDEN, "본인 회사 고객사의 사업이 아닙니다."),
-    ETC_BUSINESS_ACCESS_DENIED(HttpStatus.FORBIDDEN, "기타 사업은 삭제할 수 없습니다."),
-
-    // ClientCompany
-    CLIENT_COMPANY_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 고객사가 존재하지 않습니다."),
-    CLIENT_COMPANY_ACCESS_DENIED(HttpStatus.FORBIDDEN, "본인 회사의 고객사가 아닙니다."),
-
-    // TaskCategory
-    TASK_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 업무 카테고리가 존재하지 않습니다."),
-    TASK_CATEGORY_ACCESS_DENIED(HttpStatus.FORBIDDEN, "본인 회사의 업무 카테고리가 아닙니다."),
-    TASK_CATEGORY_ALREADY_EXISTS(HttpStatus.CONFLICT, "이미 존재하는 업무 카테고리명입니다."),
-
-    // Message
-    MESSAGE_SEND_FAILED(HttpStatus.BAD_REQUEST, "메시지 전송이 실패했습니다. 올바른 번호인지 확인하세요."),
-    MESSAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "인증번호 전송 기록이 존재하지 않습니다."),
-    MESSAGE_VERIFICATION_TIMEOUT(HttpStatus.BAD_REQUEST, "인증 번호가 만료되었습니다."),
-    VERIFICATION_DID_NOT_MATCH(HttpStatus.BAD_REQUEST, "인증 번호가 일치하지 않습니다.");
+    // File
+    FILE_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 파일이 존재하지 않습니다");
 
     private final HttpStatus status;
     private final String message;
