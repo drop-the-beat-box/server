@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -61,6 +62,16 @@ public class GlobalRestControllerExceptionHandler extends ResponseEntityExceptio
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
+        String message = getMessage(allErrors.iterator());
+        String cause = ex.getClass().getName();
+        return ResponseEntity.badRequest()
+                .body(ApiErrorResult.builder().errorCode(ErrorCode.BAD_REQUEST).message(message).cause(cause).build());
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleBindException(BindException ex,
+                                                         HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
         String message = getMessage(allErrors.iterator());
         String cause = ex.getClass().getName();

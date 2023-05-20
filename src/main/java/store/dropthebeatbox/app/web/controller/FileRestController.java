@@ -18,6 +18,7 @@ import store.dropthebeatbox.app.validation.annotation.ExistFile;
 import store.dropthebeatbox.app.web.dto.FileRequestDto;
 import store.dropthebeatbox.app.web.dto.FileResponseDto;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "File API", description = "파일 조회, 등록, 수정, 삭제")
@@ -51,13 +52,15 @@ public class FileRestController {
             @Parameter(name = "member", hidden = true)
     })
     @PostMapping(value = "/member/file", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<FileResponseDto.CreateFileDto> createFile(@ModelAttribute FileRequestDto.CreateFileDto request, @AuthUser Member member){
+    public ResponseEntity<FileResponseDto.CreateFileDto> createFile(@ModelAttribute @Valid FileRequestDto.CreateFileDto request,
+                                                                    @AuthUser Member member){
         File file = fileService.create(request, member);
         return ResponseEntity.ok(FileConverter.toCreateFileDto(file));
     }
 
     @PatchMapping("/member/file/{fileId}")
-    public ResponseEntity<FileResponseDto.UpdateFileDto> updateFile(@PathVariable(name = "fileId") @ExistFile Long fileId, @RequestBody FileRequestDto.UpdateFileDto request){
+    public ResponseEntity<FileResponseDto.UpdateFileDto> updateFile(@PathVariable(name = "fileId") @ExistFile Long fileId,
+                                                                    @RequestBody @Valid FileRequestDto.UpdateFileDto request){
         File file = fileService.update(fileId, request);
         return ResponseEntity.ok(FileConverter.toUpdateFileDto(file));
     }
