@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${LOCAL_DB_USERNAME}
-    password: ${LOCAL_DB_PASSWORD}
-    url: ${LOCAL_DB_URL}
+    username: ${aws.db.username}
+    password: ${aws.db.password}
+    url: ${aws.db.url}
   output:
     ansi:
       enabled: always
@@ -30,8 +30,8 @@ spring:
         registration:
           kakao:
             client-name: kakao
-            client-id: ${KAKAO_CLIENT_ID}
-            client-secret: ${KAKAO_CLIENT_SECRET}
+            client-id: ${kakao.client.id}
+            client-secret: ${kakao.client.secret}
             client-authentication-method: POST
             scope:
               - profile_nickname
