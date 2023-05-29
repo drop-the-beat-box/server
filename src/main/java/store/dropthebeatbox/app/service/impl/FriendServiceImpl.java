@@ -50,7 +50,7 @@ public class FriendServiceImpl implements FriendService {
     @Override
     @Transactional
     public Friend createFriend(Member member, Long requestId) {
-        Member targetFriend = friendRequestRepository.findRequestById(requestId);
+        Member targetFriend = friendRequestRepository.findFromById(requestId);
         friendRequestRepository.deleteById(requestId);
         Friend newFriend = FriendConverter.newFriend(member, targetFriend);
         friendRepository.save(newFriend);

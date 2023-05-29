@@ -12,6 +12,5 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequest, Lo
 
     List<FriendRequest> findByTo_Id(Long toId);
 
-    @Query("select fr.from from FriendRequest fr where fr.id =:requestId")
-    Member findRequestById(@Param("requestId") Long requestId);
+    Member findFromById(Long id);
 }
