@@ -20,11 +20,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    final TeamMemberRepository teamMemberRepository;
+    private final TeamMemberRepository teamMemberRepository;
 
-    final TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
 
     @Override
     public Member findById(Long memberId) {

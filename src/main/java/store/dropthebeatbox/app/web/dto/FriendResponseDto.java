@@ -52,6 +52,8 @@ public class FriendResponseDto {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CreateFriendRequestDto {
         private Long friendRequestId;
+        private Long fromId;
+        private Long toId;
         LocalDateTime createdAt;
     }
 
@@ -61,6 +63,8 @@ public class FriendResponseDto {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class AcceptFriendRequestDto {
         private Long friendId;
+        private Long ownerId;
+        private Long targetId;
         private LocalDateTime createdAt;
     }
 
