@@ -10,8 +10,7 @@ import java.util.List;
 
 public interface FriendRequestRepository extends JpaRepository<FriendRequest, Long> {
 
-    @Query("select fr.id, fr.from from FriendRequest fr where fr.to.id = :toMemberId")
-    List<Object[]> findAllByToMemberId(@Param("toMemberId") Long toMemberId);
+    List<FriendRequest> findByTo_Id(Long toId);
 
     @Query("select fr.from from FriendRequest fr where fr.id =:requestId")
     Member findRequestById(@Param("requestId") Long requestId);

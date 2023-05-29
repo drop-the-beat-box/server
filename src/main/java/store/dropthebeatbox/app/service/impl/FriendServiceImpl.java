@@ -33,28 +33,28 @@ public class FriendServiceImpl implements FriendService {
     }
 
     @Override
-    public List<Object[]> findAllByToMemberId(Long meberId) {
-        List<Object[]> fromMemberList = friendRequestRepository.findAllByToMemberId(meberId);
+    public List<FriendRequest> findAllByToMemberId(Long meberId) {
+        List<FriendRequest> fromMemberList = friendRequestRepository.findByTo_Id(meberId);
         return fromMemberList;
     }
 
     @Override
     @Transactional
-    public Long createRequest(Member member, Long friendId) {
+    public FriendRequest createRequest(Member member, Long friendId) {
         Member targetMember = memberRepository.findById(friendId).get();
         FriendRequest friendRequest = FriendConverter.newFriendRequest(member, targetMember);
          FriendRequest createdRequest = friendRequestRepository.save(friendRequest);
-        return createdRequest.getId();
+        return createdRequest;
     }
 
     @Override
     @Transactional
-    public Long createFirend(Member member, Long requestId) {
+    public Friend createFriend(Member member, Long requestId) {
         Member targetFriend = friendRequestRepository.findRequestById(requestId);
         friendRequestRepository.deleteById(requestId);
         Friend newFriend = FriendConverter.newFriend(member, targetFriend);
         friendRepository.save(newFriend);
-        return targetFriend.getId();
+        return newFriend;
     }
 
     @Override

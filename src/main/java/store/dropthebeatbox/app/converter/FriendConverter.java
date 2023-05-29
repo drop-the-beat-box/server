@@ -49,15 +49,15 @@ public class FriendConverter {
                 .build();
     }
 
-    public static FriendResponseDto.FriendRequestDto toFriendRequestDto (Object[] fromMember){
+    public static FriendResponseDto.FriendRequestDto toFriendRequestDto (FriendRequest friendRequest){
         return FriendResponseDto.FriendRequestDto.builder()
-                .friendRequestId((Long)fromMember[0])
-                    .name(((Member) fromMember[1]).getName())
-                .profileUrl(((Member) fromMember[1]).getProfileUrl())
+                .friendRequestId(friendRequest.getId())
+                    .name(friendRequest.getTo().getName())
+                .profileUrl(friendRequest.getTo().getProfileUrl())
                 .build();
     }
 
-    public static FriendResponseDto.FriendRequestListDto toFriendRequestListDto (List<Object[]> friendRequestList){
+    public static FriendResponseDto.FriendRequestListDto toFriendRequestListDto (List<FriendRequest> friendRequestList){
         List<FriendResponseDto.FriendRequestDto> friendRequestDtoList = friendRequestList.stream()
                 .map(friendRequest -> toFriendRequestDto(friendRequest))
                 .collect(Collectors.toList());
@@ -68,16 +68,20 @@ public class FriendConverter {
                 .build();
     }
 
-    public static FriendResponseDto.CreateFriendRequestDto toCreateFriendRequestDto(Long friendRequestId){
+    public static FriendResponseDto.CreateFriendRequestDto toCreateFriendRequestDto(FriendRequest friendRequest ){
         return FriendResponseDto.CreateFriendRequestDto.builder()
-                .friendRequestId(friendRequestId)
-                .createdAt(LocalDateTime.now())
+                .friendRequestId(friendRequest.getId())
+                .fromId(friendRequest.getFrom().getId())
+                .toId(friendRequest.getTo().getId())
+                .createdAt(friendRequest.getCreatedAt())
                 .build();
     }
 
-    public static FriendResponseDto.AcceptFriendRequestDto toAcceptFriendRequestDto(Long newFriendId){
+    public static FriendResponseDto.AcceptFriendRequestDto toAcceptFriendRequestDto(Friend newFriend){
         return FriendResponseDto.AcceptFriendRequestDto.builder()
-                .friendId(newFriendId)
+                .friendId(newFriend.getId())
+                .ownerId(newFriend.getOwner().getId())
+                .targetId(newFriend.getTarget().getId())
                 .createdAt(LocalDateTime.now())
                 .build();
     }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.auth.annotation.AuthUser;
 import store.dropthebeatbox.app.converter.FriendConverter;
 import store.dropthebeatbox.app.domain.Member;
+import store.dropthebeatbox.app.domain.mapping.Friend;
+import store.dropthebeatbox.app.domain.mapping.FriendRequest;
 import store.dropthebeatbox.app.service.FriendService;
 import store.dropthebeatbox.app.web.dto.FriendResponseDto;
 
@@ -27,20 +29,20 @@ public class FriendRestController {
 
     @GetMapping("/member/friend/requests")
     public ResponseEntity<FriendResponseDto.FriendRequestListDto> getFriendRequestList(@AuthUser Member member) {
-        List<Object[]> fromMemberList = friendService.findAllByToMemberId(member.getId());
+        List<FriendRequest> fromMemberList = friendService.findAllByToMemberId(member.getId());
         return ResponseEntity.ok(FriendConverter.toFriendRequestListDto(fromMemberList));
     }
 
     @PostMapping("/member/friend/{friendId}/request")
     public ResponseEntity<FriendResponseDto.CreateFriendRequestDto> createFriendRequest(@PathVariable(name = "friendId") Long friendId, @AuthUser Member member) {
-        Long createdFriendRequest = friendService.createRequest(member, friendId);
+        FriendRequest createdFriendRequest = friendService.createRequest(member, friendId);
         return ResponseEntity.ok(FriendConverter.toCreateFriendRequestDto(createdFriendRequest));
     }
 
     @PostMapping("/member/friend/request/{requestId}")
     public ResponseEntity<FriendResponseDto.AcceptFriendRequestDto> acceptFriendRequest(@PathVariable(name = "requestId") Long requestId, @AuthUser Member member) {
-        Long newFriendId = friendService.createFirend(member, requestId);
-        return ResponseEntity.ok(FriendConverter.toAcceptFriendRequestDto(newFriendId));
+        Friend newFriend = friendService.createFriend(member, requestId);
+        return ResponseEntity.ok(FriendConverter.toAcceptFriendRequestDto(newFriend));
     }
 
     @DeleteMapping("/member/friend/{friendId}")
