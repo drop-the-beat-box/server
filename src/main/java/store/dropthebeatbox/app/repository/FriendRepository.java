@@ -18,4 +18,6 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
     @Modifying
     @Query("delete from Friend f where f.target.id = :friendId")
     void deleteByFriendId(@Param("friendId") Long friendId);
+
+    Boolean existsByTargetId(Long targetId);
 }

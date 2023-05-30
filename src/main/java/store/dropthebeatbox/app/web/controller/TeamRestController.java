@@ -3,18 +3,21 @@ package store.dropthebeatbox.app.web.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.auth.annotation.AuthUser;
 import store.dropthebeatbox.app.converter.TeamConverter;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.Team;
 import store.dropthebeatbox.app.service.TeamService;
+import store.dropthebeatbox.app.validation.annotation.ExistTeam;
 import store.dropthebeatbox.app.web.dto.TeamRequestDto;
 import store.dropthebeatbox.app.web.dto.TeamResponseDto;
 
 import java.util.List;
 
 @Tag(name = "Team API", description = "팀 조회, 추가, 수정, 삭제")
+@Validated
 @RestController
 @RequiredArgsConstructor
 public class TeamRestController {
@@ -22,7 +25,7 @@ public class TeamRestController {
     private final TeamService teamService;
 
     @GetMapping("/member/team/{teamId}")
-    public ResponseEntity<TeamResponseDto.TeamDto> getTeamByTeamId(@PathVariable(name = "teamId") Long teamId) {
+    public ResponseEntity<TeamResponseDto.TeamDto> getTeamByTeamId(@PathVariable(name = "teamId") @ExistTeam Long teamId) {
         Team team = teamService.findById(teamId);
         return ResponseEntity.ok(TeamConverter.toTeamDto(team));
     }
@@ -40,13 +43,13 @@ public class TeamRestController {
     }
 
     @PatchMapping("/member/team/{teamId}")
-    public ResponseEntity<TeamResponseDto.UpdateTeamDto> updateTeam(@PathVariable(name = "teamId") Long teamId, @RequestBody TeamRequestDto.UpdateTeamDto request, @AuthUser Member member) {
+    public ResponseEntity<TeamResponseDto.UpdateTeamDto> updateTeam(@PathVariable(name = "teamId") @ExistTeam Long teamId, @RequestBody TeamRequestDto.UpdateTeamDto request, @AuthUser Member member) {
         Team team = teamService.update(teamId, request);
         return ResponseEntity.ok(TeamConverter.toUpdateTeamDto(team));
     }
 
     @DeleteMapping("/member/team/{teamId}")
-    public ResponseEntity<TeamResponseDto.DeleteTeamDto> deleteTeam(@PathVariable(name = "teamId") Long teamId) {
+    public ResponseEntity<TeamResponseDto.DeleteTeamDto> deleteTeam(@PathVariable(name = "teamId") @ExistTeam Long teamId) {
         teamService.delete(teamId);
         return ResponseEntity.ok(TeamConverter.toDeleteTeamDto());
     }

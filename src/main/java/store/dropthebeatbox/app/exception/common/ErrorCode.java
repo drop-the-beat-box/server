@@ -24,8 +24,16 @@ public enum ErrorCode {
     PHONE_NUMBER_ALREADY_EXISTS(HttpStatus.BAD_REQUEST, "중복된 휴대폰번호입니다."),
 
     // File
-    FILE_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 파일이 존재하지 않습니다");
+    FILE_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 파일이 존재하지 않습니다"),
 
+    // Friend
+    FRIEND_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저와 친구가 아닙니다"),
+
+    //Friend Request
+    FRIEND_REQUEST_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 친구 요청은 존재하지 않습니다"),
+
+    //Team
+    TEAM_REQUEST_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 팀이 존재하지 않습니다");
     private final HttpStatus status;
     private final String message;
 
