@@ -53,7 +53,7 @@ public class FriendRestController {
     }
 
     @DeleteMapping("/member/friend/{friendId}")
-    public ResponseEntity<FriendResponseDto.DeleteFriendDto> deleteFriend(@PathVariable(name = "friendId") @ExistFriend Long friendId, @AuthUser Member member) {
+    public ResponseEntity<FriendResponseDto.DeleteFriendDto> deleteFriend(@PathVariable(name = "friendId") @ExistMember Long friendId, @AuthUser Member member) {
         friendService.delete(friendId);
         return ResponseEntity.ok(FriendConverter.toDeleteFriendDto());
     }
