@@ -56,12 +56,12 @@ public class FriendRestController {
         return ResponseEntity.ok(FriendConverter.toCreateFriendRequestDto(createdFriendRequest));
     }
 
-    @Deprecated
-    @PostMapping("/member/friend/request/{requestId}")
-    public ResponseEntity<FriendResponseDto.AcceptFriendRequestDto> acceptFriendRequest(@PathVariable(name = "requestId") @ExistFriendRequest Long requestId, @AuthUser Member member) {
-        Friend newFriend = friendService.createFriend(member, requestId);
-        return ResponseEntity.ok(FriendConverter.toAcceptFriendRequestDto(newFriend));
-    }
+//    @Deprecated
+//    @PostMapping("/member/friend/request/{requestId}")
+//    public ResponseEntity<FriendResponseDto.AcceptFriendRequestDto> acceptFriendRequest(@PathVariable(name = "requestId") @ExistFriendRequest Long requestId, @AuthUser Member member) {
+//        Friend newFriend = friendService.createFriend(member, requestId);
+//        return ResponseEntity.ok(FriendConverter.toAcceptFriendRequestDto(newFriend));
+//    }
 
     @Operation(summary = "친구 삭제입니다.", description = "삭제 하려는 친구 아이디로 삭제합니다.")
     @Parameters(
@@ -74,5 +74,18 @@ public class FriendRestController {
     public ResponseEntity<FriendResponseDto.DeleteFriendDto> deleteFriend(@PathVariable(name = "friendId") @ExistMember Long friendId, @AuthUser Member member) {
         friendService.delete(friendId);
         return ResponseEntity.ok(FriendConverter.toDeleteFriendDto());
+    }
+
+    @Operation(summary = "친구 신청입니다.", description = "친구를 맺으려는 대상의 아이디로 친구를 맺습니다.")
+    @Parameters(
+            {
+                    @Parameter(name = "friendId", description = "친구를 맺고 싶은 멤버 아이디입니다."),
+                    @Parameter(name = "member", hidden = true)
+            }
+    )
+    @PostMapping("/member/friend/{friendId}")
+    public ResponseEntity<FriendResponseDto.AcceptFriendDto> createFriend(@PathVariable(name = "friendId") @ExistMember Long friendId, @AuthUser Member member){
+        Friend friend = friendService.makeFriend(member, friendId);
+        return ResponseEntity.ok(FriendConverter.toAcceptFriendDto(friend));
     }
 }

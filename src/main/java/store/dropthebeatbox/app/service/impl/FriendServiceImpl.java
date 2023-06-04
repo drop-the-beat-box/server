@@ -63,4 +63,12 @@ public class FriendServiceImpl implements FriendService {
         friendRepository.deleteByFriendId(friendId);
         return;
     }
+
+    @Override
+    @Transactional
+    public Friend makeFriend(Member owner, Long targetId) {
+        Member target = memberRepository.findById(targetId).get();
+        Friend newFriend = FriendConverter.newFriend(owner, target);
+        return friendRepository.save(newFriend);
+    }
 }
