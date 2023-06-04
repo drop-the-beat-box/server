@@ -29,7 +29,10 @@ public class FileRestController {
 
     private final FileService fileService;
 
-    @Operation(summary = "파일 단건 조회", description = "")
+    @Operation(summary = "파일 단건 조회", description = "파일 id로 파일 하나를 조회합니다.")
+    @Parameters({
+            @Parameter(name = "fileId", description = "조회하고자 하는 파일의 id")
+    })
     @GetMapping("/member/file/{fileId}")
     public ResponseEntity<FileResponseDto.FileDto> getFileByFileId(@PathVariable(name = "fileId") @ExistFile Long fileId) {
         File file = fileService.findByFileId(fileId);
@@ -47,7 +50,7 @@ public class FileRestController {
     }
 
 
-    @Operation(summary = "파일 추가", description = "")
+    @Operation(summary = "파일 추가", description = "파일을 추가합니다.")
     @Parameters({
             @Parameter(name = "member", hidden = true)
     })
@@ -58,6 +61,10 @@ public class FileRestController {
         return ResponseEntity.ok(FileConverter.toCreateFileDto(file));
     }
 
+    @Operation(summary = "파일 정보 수정", description = "파일의 설명을 수정합니다.")
+    @Parameters({
+            @Parameter(name = "fileId", description = "수정하고자 하는 파일의 id")
+    })
     @PatchMapping("/member/file/{fileId}")
     public ResponseEntity<FileResponseDto.UpdateFileDto> updateFile(@PathVariable(name = "fileId") @ExistFile Long fileId,
                                                                     @RequestBody @Valid FileRequestDto.UpdateFileDto request){
@@ -65,6 +72,10 @@ public class FileRestController {
         return ResponseEntity.ok(FileConverter.toUpdateFileDto(file));
     }
 
+    @Operation(summary = "파일 삭제", description = "파일을 삭제합니다. (Hard Delete) 휴지통에서 삭제 버튼을 누를 때 사용")
+    @Parameters({
+            @Parameter(name = "fileId", description = "삭제하고자 하는 파일의 id")
+    })
     @DeleteMapping("/member/file/{fileId}")
     public ResponseEntity<FileResponseDto.DeleteFileDto> deleteFile(@PathVariable(name = "fileId") @ExistFile Long fileId){
         fileService.delete(fileId);

@@ -25,7 +25,7 @@ public class FavoriteFileRestController {
 
     private final FavoriteFileService favoriteFileService;
 
-    @Operation(summary = "중요 파일 목록 조회", description = "")
+    @Operation(summary = "중요 파일 목록 조회", description = "나의 중요 파일 목록을 조회합니다.")
     @Parameters({
             @Parameter(name = "member", hidden = true)
     })
@@ -35,8 +35,9 @@ public class FavoriteFileRestController {
         return ResponseEntity.ok(FavoriteFileConverter.toFavoriteFileListDto(fileList));
     }
 
-    @Operation(summary = "중요 파일 추가", description = "")
+    @Operation(summary = "중요 파일 추가", description = "특정 파일을 중요 파일에 추가합니다.")
     @Parameters({
+            @Parameter(name = "fileId", description = "중요 파일에 추가할 파일의 id"),
             @Parameter(name = "member", hidden = true)
     })
     @PostMapping("/member/favorite/{fileId}")
@@ -45,8 +46,9 @@ public class FavoriteFileRestController {
         return ResponseEntity.ok(FavoriteFileConverter.toCreateFavoriteFileDto(favoriteFile));
     }
 
-    @Operation(summary = "중요 파일 삭제", description = "")
+    @Operation(summary = "중요 파일 삭제", description = "중요 파일 목록에서 파일을 없앨 때 사용합니다.")
     @Parameters({
+            @Parameter(name = "fileId", description = "중요 파일 목록에서 없앨 파일의 id"),
             @Parameter(name = "member", hidden = true)
     })
     @DeleteMapping("/member/favorite/{fileId}")
