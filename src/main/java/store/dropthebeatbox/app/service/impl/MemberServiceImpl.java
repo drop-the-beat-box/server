@@ -68,4 +68,9 @@ public class MemberServiceImpl implements MemberService {
         return;
     }
 
+    @Override
+    public List<Member> search(String keyword) {
+        List<Member> memberList = memberRepository.findByNameContains(keyword);
+        return  memberList;
+    }
 }

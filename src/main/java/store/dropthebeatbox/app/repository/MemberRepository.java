@@ -20,4 +20,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findSharedMembersByFile_Id(@Param("fileId") Long fileId);
 
     List<Member> findByIdIn (List<Long> memberList);
+    List<Member> findByNameContains(String keyword);
 }
