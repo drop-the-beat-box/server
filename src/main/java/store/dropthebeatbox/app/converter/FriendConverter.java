@@ -77,8 +77,8 @@ public class FriendConverter {
                 .build();
     }
 
-    public static FriendResponseDto.AcceptFriendRequestDto toAcceptFriendRequestDto(Friend newFriend){
-        return FriendResponseDto.AcceptFriendRequestDto.builder()
+    public static FriendResponseDto.AcceptFriendDto toAcceptFriendDto(Friend newFriend){
+        return FriendResponseDto.AcceptFriendDto.builder()
                 .friendId(newFriend.getId())
                 .ownerId(newFriend.getOwner().getId())
                 .targetId(newFriend.getTarget().getId())

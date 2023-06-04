@@ -16,4 +16,6 @@ public interface FriendService {
     Friend createFriend(Member member, Long requestId);
 
     void delete(Long friendId);
+
+    Friend makeFriend(Member owner, Long targetId);
 }

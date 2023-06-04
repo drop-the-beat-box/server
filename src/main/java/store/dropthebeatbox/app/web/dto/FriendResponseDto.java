@@ -61,7 +61,7 @@ public class FriendResponseDto {
     @Getter
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class AcceptFriendRequestDto {
+    public static class AcceptFriendDto {
         private Long friendId;
         private Long ownerId;
         private Long targetId;
