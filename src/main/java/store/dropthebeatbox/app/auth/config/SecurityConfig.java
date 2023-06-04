@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import store.dropthebeatbox.app.auth.handler.JwtAccessDeniedHandler;
 import store.dropthebeatbox.app.auth.handler.JwtAuthenticationEntryPoint;
 import store.dropthebeatbox.app.auth.handler.OAuth2AuthenticationSuccessHandler;
@@ -28,6 +29,7 @@ public class SecurityConfig  {
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private final UrlBasedCorsConfigurationSource corsConfigurationSource;
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
@@ -47,6 +49,7 @@ public class SecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.
                 cors()
+                .configurationSource(corsConfigurationSource)
                 .and()
                 .csrf().disable()
                  /**401, 403 Exception 핸들링 */
