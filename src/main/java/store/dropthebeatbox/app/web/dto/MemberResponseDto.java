@@ -16,6 +16,7 @@ public class MemberResponseDto {
         private String name;
         private String email;
         private String profileUrl;
+        private boolean following;
     }
 
     @Builder

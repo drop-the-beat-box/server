@@ -20,4 +20,6 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
     void deleteByFriendId(@Param("friendId") Long friendId);
 
     Boolean existsByTargetId(Long targetId);
+
+    Boolean existsByOwnerIdAndTargetId(Long ownerId, Long targetId);
 }
