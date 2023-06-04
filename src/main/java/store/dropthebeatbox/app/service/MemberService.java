@@ -16,4 +16,6 @@ public interface MemberService {
     Member update(Long memberId, MemberRequestDto.UpdateMemberDto request);
 
     void delete(Long memberId);
+
+    List<Member> search(String keyword);
 }

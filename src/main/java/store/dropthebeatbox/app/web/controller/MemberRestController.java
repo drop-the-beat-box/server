@@ -70,4 +70,10 @@ public class MemberRestController {
         memberService.delete(member.getId());
         return ResponseEntity.ok(MemberConverter.toDeleteMemberDto());
     }
+
+    @GetMapping("/team/member/search")
+    public ResponseEntity<MemberResponseDto.MemberListDto> searchMember(@RequestParam String keyword, @AuthUser Member member){
+        List<Member> searchMemberList = memberService.search(keyword);
+        return ResponseEntity.ok(MemberConverter.toMemberListDto(searchMemberList));
+    }
 }
