@@ -45,7 +45,10 @@ public class SecurityConfig  {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
+        return http.
+                cors()
+                .and()
+                .csrf().disable()
                  /**401, 403 Exception 핸들링 */
                 .exceptionHandling()
                     .authenticationEntryPoint(jwtAuthenticationEntryPoint)
