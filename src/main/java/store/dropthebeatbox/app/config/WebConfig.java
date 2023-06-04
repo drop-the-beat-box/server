@@ -27,14 +27,15 @@ public class WebConfig implements WebMvcConfigurer {
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource corsConfigSource = new UrlBasedCorsConfigurationSource();
 
-        CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedHeaders(Arrays.asList(corsProperties.getAllowedHeaders().split(",")));
-        corsConfig.setAllowedMethods(Arrays.asList(corsProperties.getAllowedMethods().split(",")));
-        corsConfig.setAllowedOrigins(Arrays.asList(corsProperties.getAllowedOrigins().split(",")));
-        corsConfig.setAllowCredentials(true);
-        corsConfig.setMaxAge(corsConfig.getMaxAge());
+        CorsConfiguration configuration = new CorsConfiguration();
+        // 모든 출처를 허용합니다.
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
 
-        corsConfigSource.registerCorsConfiguration("/**", corsConfig);
+        corsConfigSource.registerCorsConfiguration("/**", configuration);
         return corsConfigSource;
     }
 }
