@@ -13,6 +13,7 @@ import store.dropthebeatbox.app.auth.annotation.AuthUser;
 import store.dropthebeatbox.app.converter.MemberConverter;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.service.MemberService;
+import store.dropthebeatbox.app.validation.annotation.ExistMember;
 import store.dropthebeatbox.app.validation.annotation.ExistTeam;
 import store.dropthebeatbox.app.web.dto.MemberResponseDto;
 import store.dropthebeatbox.app.web.dto.MemberRequestDto;
@@ -32,7 +33,7 @@ public class MemberRestController {
             @Parameter(name = "memberId", description = "조회를 희망하는 멤버의 아이디 입니다.")
     })
     @GetMapping("/team/member/{memberId}")
-    public ResponseEntity<MemberResponseDto.MemberDto> getMemberByMemberId(@PathVariable(name = "memberId") Long memberId) {
+    public ResponseEntity<MemberResponseDto.MemberDto> getMemberByMemberId(@PathVariable(name = "memberId") @ExistMember Long memberId) {
         Member member = memberService.findById(memberId);
         return ResponseEntity.ok(MemberConverter.toMemberDto(member));
     }
@@ -42,14 +43,18 @@ public class MemberRestController {
             @Parameter(name = "teamId", description = "조회를 희망하는 팀 아이디입니다.")
     })
     @GetMapping("/team/{teamId}/members")
-    public ResponseEntity<MemberResponseDto.MemberListDto> getMemberListByTeamId(@PathVariable(name = "teamId") Long teamId) {
+    public ResponseEntity<MemberResponseDto.MemberListDto> getMemberListByTeamId(@PathVariable(name = "teamId") @ExistTeam Long teamId) {
         List<Member> memberList = memberService.findAllByTeamId(teamId);
         return ResponseEntity.ok(MemberConverter.toMemberListDto(memberList));
     }
 
-    @Deprecated
+    @Operation(summary = "팀에 선택한 멤버 여러명 추가하기", description = "팀 아이디를 통해 팀에 멤버를 추가, body에 memberIdList로 멤버 아이디 포함")
+    @Parameters({
+            @Parameter(name = "member", hidden = true),
+            @Parameter(name = "teamId", description = "멤버를 추가 할 팀 아이디입니다.")
+    })
     @PostMapping("/team/{teamId}/member")
-    public ResponseEntity<MemberResponseDto.JoinMemberListDto> createMemberInTeam(@RequestBody MemberRequestDto.AddTeamMemberDto request ,@PathVariable(name = "teamId") @ExistTeam Long teamId) {
+    public ResponseEntity<MemberResponseDto.JoinMemberListDto> createMemberInTeam(@RequestBody MemberRequestDto.AddTeamMemberDto request ,@PathVariable(name = "teamId") @ExistTeam Long teamId, @AuthUser Member member) {
         List<Member> teamMembers = memberService.insertToTeam(teamId, request);
         return ResponseEntity.ok(MemberConverter.toJoinMemberListDto(teamMembers, teamId));
     }
