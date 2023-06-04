@@ -7,11 +7,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.auth.annotation.AuthUser;
 import store.dropthebeatbox.app.converter.MemberConverter;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.service.MemberService;
+import store.dropthebeatbox.app.validation.annotation.ExistTeam;
 import store.dropthebeatbox.app.web.dto.MemberResponseDto;
 import store.dropthebeatbox.app.web.dto.MemberRequestDto;
 
@@ -19,6 +21,7 @@ import java.util.List;
 
 @Tag(name = "Member API", description = "멤버 조회, 추가, 수정, 삭제")
 @RestController
+@Validated
 @RequiredArgsConstructor
 public class MemberRestController {
 
@@ -45,10 +48,10 @@ public class MemberRestController {
     }
 
     @Deprecated
-    @PostMapping("/team/{teamId}/member/{memberId}")
-    public ResponseEntity<MemberResponseDto.JoinMemberDto> createMemberInTeam(@PathVariable(name = "teamId") Long teamId, @PathVariable(name = "memberId") Long memberId) {
-        Member member = memberService.insertToTeam(memberId,teamId);
-        return ResponseEntity.ok(MemberConverter.toJoinMemberDto(memberId, teamId));
+    @PostMapping("/team/{teamId}/member")
+    public ResponseEntity<MemberResponseDto.JoinMemberListDto> createMemberInTeam(@RequestBody MemberRequestDto.AddTeamMemberDto request ,@PathVariable(name = "teamId") @ExistTeam Long teamId) {
+        List<Member> teamMembers = memberService.insertToTeam(teamId, request);
+        return ResponseEntity.ok(MemberConverter.toJoinMemberListDto(teamMembers, teamId));
     }
 
     @Operation(summary = "멤버 정보 수정하기", description = "멤버 이름과 프로필 사진의 수정을 하는 API입니다.")
