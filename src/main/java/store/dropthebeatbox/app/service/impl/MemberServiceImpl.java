@@ -14,6 +14,7 @@ import store.dropthebeatbox.app.service.MemberService;
 import store.dropthebeatbox.app.web.dto.MemberRequestDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -36,15 +37,19 @@ public class MemberServiceImpl implements MemberService {
         return teamMemberRepository.findMemberByTeamId(teamId);
     }
 
-    @Transactional
     @Override
-    public Member insertToTeam(Long memberId, Long teamId) {
-        Member member = memberRepository.findById(memberId).get();
+    @Transactional
+    public List<Member> insertToTeam(Long teamId, MemberRequestDto.AddTeamMemberDto request) {
+        System.out.println("fuck  " + request.getMemberIdList());
+        List<Member> memberList = memberRepository.findAllById(request.getMemberIdList());
         Team team = teamRepository.findById(teamId).get();
 
-        TeamMember teamMember = TeamMemberConverter.toTeamMember(team, member);
-        teamMemberRepository.save(teamMember);
-        return member;
+        List<TeamMember> teamMemberList = memberList.stream()
+                .map(member -> TeamMemberConverter.toTeamMember(team, member))
+                .collect(Collectors.toList());
+
+        teamMemberRepository.saveAll(teamMemberList);
+        return  memberList;
     }
 
     @Transactional

@@ -11,7 +11,7 @@ public interface MemberService {
 
     List<Member> findAllByTeamId(Long teamId);
 
-    Member insertToTeam(Long memberId, Long teamId);
+    List<Member> insertToTeam(Long teamId, MemberRequestDto.AddTeamMemberDto request);
 
     Member update(Long memberId, MemberRequestDto.UpdateMemberDto request);
 

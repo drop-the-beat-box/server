@@ -19,5 +19,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("SELECT m FROM Member m WHERE m.id IN (SELECT sf.member.id FROM SharedFile sf WHERE sf.file.id = :fileId)")
     List<Member> findSharedMembersByFile_Id(@Param("fileId") Long fileId);
 
+    List<Member> findByIdIn (List<Long> memberList);
     List<Member> findByNameContains(String keyword);
 }

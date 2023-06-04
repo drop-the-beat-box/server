@@ -69,4 +69,22 @@ public class MemberConverter {
                 .deletedAt(LocalDateTime.now())
                 .build();
     }
+
+    public static MemberResponseDto.JoinMemberDto toJoinMemberDto(Member member, Long teamId){
+        return  MemberResponseDto.JoinMemberDto.builder()
+                .memberId(member.getId())
+                .teamId(teamId)
+                .build();
+    }
+
+    public static MemberResponseDto.JoinMemberListDto toJoinMemberListDto(List<Member> memberList, Long teamId){
+        List<MemberResponseDto.JoinMemberDto> joinMemberDtoList = memberList.stream()
+                .map(member -> toJoinMemberDto(member, teamId))
+                .collect(Collectors.toList());
+
+        return MemberResponseDto.JoinMemberListDto.builder()
+                .joinMemberList(joinMemberDtoList)
+                .size(joinMemberDtoList.size())
+                .build();
+    }
 }

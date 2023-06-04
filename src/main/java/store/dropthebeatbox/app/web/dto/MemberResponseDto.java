@@ -31,6 +31,15 @@ public class MemberResponseDto {
     @Getter
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class JoinMemberListDto{
+        private List<JoinMemberDto> joinMemberList;
+        private Integer size;
+    }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class MemberListDto {
         private List<MemberDto> memberDtoList;
         private Integer size;
