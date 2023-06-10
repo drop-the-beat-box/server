@@ -17,4 +17,6 @@ public interface FileService {
     File update(Long fileId, FileRequestDto.UpdateFileDto request);
 
     void delete(Long fileId);
+
+    void throwFile(Long fileId);
 }

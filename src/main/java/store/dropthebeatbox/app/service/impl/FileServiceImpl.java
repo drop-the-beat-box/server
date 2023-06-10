@@ -14,6 +14,7 @@ import store.dropthebeatbox.app.util.S3Manager;
 import store.dropthebeatbox.app.web.dto.FileRequestDto;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -73,5 +74,13 @@ public class FileServiceImpl implements FileService {
         String keyName = s3Manager.toKeyName(file);
         s3Manager.deleteFile(keyName);
         fileRepository.delete(file);
+    }
+
+    @Override
+    @Transactional
+    public void throwFile(Long fileId) {
+        LocalDateTime deletedAt = LocalDateTime.now();
+        File targetFile = fileRepository.findById(fileId).get();
+        targetFile.setDeleted(deletedAt);
     }
 }

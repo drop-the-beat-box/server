@@ -45,4 +45,8 @@ public class File extends BaseEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setDeleted(LocalDateTime deletedAt){
+        this.deletedAt = deletedAt;
+    }
 }

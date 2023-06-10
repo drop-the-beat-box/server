@@ -81,4 +81,10 @@ public class FileRestController {
         fileService.delete(fileId);
         return ResponseEntity.ok(FileConverter.toDeleteFileDto(fileId));
     }
+
+    @PatchMapping("/member/file/trash-can/{fileId}")
+    public ResponseEntity<FileResponseDto.DeleteFileDto> throwFile(@PathVariable(name = "fileId") @ExistFile Long fileId){
+        fileService.throwFile(fileId);
+        return ResponseEntity.ok(FileConverter.toDeleteFileDto(fileId));
+    }
 }
