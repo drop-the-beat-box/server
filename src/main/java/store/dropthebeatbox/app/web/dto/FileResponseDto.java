@@ -64,6 +64,7 @@ public class FileResponseDto {
         private Long fileId;
         private String name;
         private Long remainDay;
+        private String imageUrl;
     }
 
     @Builder
