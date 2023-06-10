@@ -89,4 +89,12 @@ public class FileServiceImpl implements FileService {
         List<File> trashFiles = fileRepository.findTrashFiles(member);
         return trashFiles;
     }
+
+    @Override
+    @Transactional
+    public File rollbackFile(Long fileId) {
+        File targetFile = fileRepository.findById(fileId).get();
+        targetFile.setRollback();
+        return targetFile;
+    }
 }

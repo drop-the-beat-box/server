@@ -21,4 +21,6 @@ public interface FileService {
     void throwFile(Long fileId);
 
     List<File> findTrashFiles(Member member);
+
+    File rollbackFile(Long fileId);
 }

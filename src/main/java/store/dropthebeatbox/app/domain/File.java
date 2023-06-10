@@ -50,4 +50,9 @@ public class File extends BaseEntity {
         this.deletedAt = deletedAt;
         this.isDeleted = true;
     }
+
+    public void setRollback(){
+        this.isDeleted = false;
+        this.deletedAt = null;
+    }
 }

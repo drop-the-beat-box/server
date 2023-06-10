@@ -93,4 +93,10 @@ public class FileRestController {
         List<File> trashFiles = fileService.findTrashFiles(member);
         return ResponseEntity.ok(FileConverter.toTrashFileListDto(trashFiles));
     }
+
+    @PatchMapping("/member/file/trash-can/roll-back/{fileId}")
+    public ResponseEntity<FileResponseDto.rollbackFileDto> rollbackFile(@PathVariable(name = "fileId") @ExistFile Long fileId, @AuthUser Member member){
+        File file = fileService.rollbackFile(fileId);
+        return ResponseEntity.ok(FileConverter.toRollbackFileDto(file));
+    }
 }

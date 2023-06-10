@@ -120,4 +120,11 @@ public class FileConverter {
                 .size(fileList.size())
                 .build();
     }
+
+    public static FileResponseDto.rollbackFileDto toRollbackFileDto(File file){
+        return FileResponseDto.rollbackFileDto.builder()
+                .fileId(file.getId())
+                .rollbackAt(LocalDateTime.now())
+                .build();
+    }
 }
