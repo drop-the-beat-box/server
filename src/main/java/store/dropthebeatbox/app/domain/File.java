@@ -48,5 +48,6 @@ public class File extends BaseEntity {
 
     public void setDeleted(LocalDateTime deletedAt){
         this.deletedAt = deletedAt;
+        this.isDeleted = true;
     }
 }

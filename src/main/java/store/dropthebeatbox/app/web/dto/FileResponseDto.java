@@ -55,4 +55,22 @@ public class FileResponseDto {
         private Long fileId;
         private LocalDateTime updatedAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class trashFileDto {
+        private Long fileId;
+        private Long remainDay;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class trashFileListDto{
+        private List<trashFileDto> trashFileDtoList;
+        private Integer size;
+    }
 }

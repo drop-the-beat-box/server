@@ -19,4 +19,6 @@ public interface FileService {
     void delete(Long fileId);
 
     void throwFile(Long fileId);
+
+    List<File> findTrashFiles(Member member);
 }

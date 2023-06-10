@@ -83,8 +83,14 @@ public class FileRestController {
     }
 
     @PatchMapping("/member/file/trash-can/{fileId}")
-    public ResponseEntity<FileResponseDto.DeleteFileDto> throwFile(@PathVariable(name = "fileId") @ExistFile Long fileId){
+    public ResponseEntity<FileResponseDto.DeleteFileDto> throwFile(@PathVariable(name = "fileId") @ExistFile Long fileId, @AuthUser Member member){
         fileService.throwFile(fileId);
         return ResponseEntity.ok(FileConverter.toDeleteFileDto(fileId));
+    }
+
+    @GetMapping("/member/file/trash-can")
+    public ResponseEntity<FileResponseDto.trashFileListDto> getTrashFiles(@AuthUser Member member){
+        List<File> trashFiles = fileService.findTrashFiles(member);
+        return ResponseEntity.ok(FileConverter.toTrashFileListDto(trashFiles));
     }
 }

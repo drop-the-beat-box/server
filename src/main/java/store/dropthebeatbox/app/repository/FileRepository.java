@@ -16,4 +16,7 @@ public interface FileRepository extends JpaRepository<File, Long> {
 
     @Query("SELECT f FROM File f WHERE f.id IN (SELECT ff.file.id FROM FavoriteFile ff WHERE ff.member = :member)")
     List<File> findFavoriteFilesByMember(@Param("member") Member member);
+
+    @Query("select f from File f where f.isDeleted = true and f.member = :member")
+    List<File> findTrashFiles(@Param("member") Member member);
 }

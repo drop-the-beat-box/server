@@ -83,4 +83,10 @@ public class FileServiceImpl implements FileService {
         File targetFile = fileRepository.findById(fileId).get();
         targetFile.setDeleted(deletedAt);
     }
+
+    @Override
+    public List<File> findTrashFiles(Member member) {
+        List<File> trashFiles = fileRepository.findTrashFiles(member);
+        return trashFiles;
+    }
 }

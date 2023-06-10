@@ -15,6 +15,7 @@ import store.dropthebeatbox.app.web.dto.FileRequestDto;
 import store.dropthebeatbox.app.web.dto.FileResponseDto;
 
 import javax.annotation.PostConstruct;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +99,25 @@ public class FileConverter {
                 .uuid(uuid)
                 .fileType(fileType)
                 .member(member)
+                .build();
+    }
+
+    public static FileResponseDto.trashFileDto toTrashFileDto(File file){
+
+        Duration duration = Duration.between(file.getDeletedAt(), LocalDateTime.now());
+        return FileResponseDto.trashFileDto.builder()
+                .fileId(file.getId())
+                .remainDay(duration.toDays())
+                .build();
+    }
+
+    public static FileResponseDto.trashFileListDto toTrashFileListDto(List<File> fileList){
+        List<FileResponseDto.trashFileDto> trashFileDtoList = fileList.stream()
+                .map((file -> toTrashFileDto(file)))
+                .collect(Collectors.toList());
+        return FileResponseDto.trashFileListDto.builder()
+                .trashFileDtoList(trashFileDtoList)
+                .size(fileList.size())
                 .build();
     }
 }
