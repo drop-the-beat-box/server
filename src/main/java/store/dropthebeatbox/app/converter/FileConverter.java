@@ -107,6 +107,7 @@ public class FileConverter {
         Duration duration = Duration.between(file.getDeletedAt(), LocalDateTime.now());
         return FileResponseDto.trashFileDto.builder()
                 .fileId(file.getId())
+                .name(file.getName())
                 .remainDay(duration.toDays())
                 .build();
     }

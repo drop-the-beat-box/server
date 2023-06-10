@@ -62,6 +62,7 @@ public class FileResponseDto {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class trashFileDto {
         private Long fileId;
+        private String name;
         private Long remainDay;
     }
 
