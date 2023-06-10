@@ -21,4 +21,7 @@ public interface FileRepository extends JpaRepository<File, Long> {
 
     @Query("select f from File f where f.isDeleted = true and f.member = :member")
     List<File> findTrashFiles(@Param("member") Member member);
+
+    @Query("select f from File f where f.isDeleted = true")
+    List<File> findAllTrashFiles();
 }

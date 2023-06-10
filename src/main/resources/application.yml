@@ -7,7 +7,11 @@ spring:
   output:
     ansi:
       enabled: always
-
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      names: myJob
   jpa:
     properties:
       hibernate:
