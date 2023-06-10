@@ -82,18 +82,32 @@ public class FileRestController {
         return ResponseEntity.ok(FileConverter.toDeleteFileDto(fileId));
     }
 
+    @Operation(summary = "휴지통으로 파일 이동", description = "파일을 휴지통으로 옮깁니다.")
+    @Parameters({
+            @Parameter(name = "fileId", description = "휴지통으로 옮길 파일"),
+            @Parameter(name = "member",hidden = true)
+    })
     @PatchMapping("/member/file/trash-can/{fileId}")
     public ResponseEntity<FileResponseDto.DeleteFileDto> throwFile(@PathVariable(name = "fileId") @ExistFile Long fileId, @AuthUser Member member){
         fileService.throwFile(fileId);
         return ResponseEntity.ok(FileConverter.toDeleteFileDto(fileId));
     }
 
+    @Operation(summary = "휴지통의 파일 조회", description = "내가 휴지통으로 보냈던(당연히 내 소유의) 파일을 조회합니다.")
+    @Parameters({
+            @Parameter(name = "member",hidden = true)
+    })
     @GetMapping("/member/file/trash-can")
     public ResponseEntity<FileResponseDto.trashFileListDto> getTrashFiles(@AuthUser Member member){
         List<File> trashFiles = fileService.findTrashFiles(member);
         return ResponseEntity.ok(FileConverter.toTrashFileListDto(trashFiles));
     }
 
+    @Operation(summary = "휴지통의 파일을 복구합니다", description = "파일 아이디로 휴지통의 파일을 복구합니다")
+    @Parameters({
+            @Parameter(name = "fileId", description = "복구 할 휴지통의 파일 아이디입니다."),
+            @Parameter(name = "member", hidden = true)
+    })
     @PatchMapping("/member/file/trash-can/roll-back/{fileId}")
     public ResponseEntity<FileResponseDto.rollbackFileDto> rollbackFile(@PathVariable(name = "fileId") @ExistFile Long fileId, @AuthUser Member member){
         File file = fileService.rollbackFile(fileId);
