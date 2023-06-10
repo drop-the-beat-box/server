@@ -109,6 +109,7 @@ public class FileConverter {
                 .fileId(file.getId())
                 .name(file.getName())
                 .remainDay(duration.toDays())
+                .imageUrl(file.getUrl())
                 .build();
     }
 
