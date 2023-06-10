@@ -12,7 +12,9 @@ import java.util.Optional;
 
 public interface FileRepository extends JpaRepository<File, Long> {
     Optional<File> findById(Long id);
-    List<File> findByMember(Member member);
+
+    @Query("select f FROM File f where f.member = :member and f.isDeleted = false ")
+    List<File> findByMember(@Param("member") Member member);
 
     @Query("SELECT f FROM File f WHERE f.id IN (SELECT ff.file.id FROM FavoriteFile ff WHERE ff.member = :member)")
     List<File> findFavoriteFilesByMember(@Param("member") Member member);
