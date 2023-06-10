@@ -17,4 +17,10 @@ public interface FileService {
     File update(Long fileId, FileRequestDto.UpdateFileDto request);
 
     void delete(Long fileId);
+
+    void throwFile(Long fileId);
+
+    List<File> findTrashFiles(Member member);
+
+    File rollbackFile(Long fileId);
 }
