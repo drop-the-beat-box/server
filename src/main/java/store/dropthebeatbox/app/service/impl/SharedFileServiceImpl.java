@@ -6,10 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 import store.dropthebeatbox.app.converter.SharedFileConverter;
 import store.dropthebeatbox.app.domain.File;
 import store.dropthebeatbox.app.domain.Member;
+import store.dropthebeatbox.app.domain.Team;
 import store.dropthebeatbox.app.domain.mapping.SharedFile;
 import store.dropthebeatbox.app.repository.FileRepository;
 import store.dropthebeatbox.app.repository.MemberRepository;
 import store.dropthebeatbox.app.repository.SharedFileRepository;
+import store.dropthebeatbox.app.repository.TeamRepository;
 import store.dropthebeatbox.app.service.SharedFileService;
 
 import java.util.List;
@@ -22,24 +24,22 @@ public class SharedFileServiceImpl implements SharedFileService {
     private final FileRepository fileRepository;
     private final MemberRepository memberRepository;
 
-    @Override
-    public List<Member> findByFileId(Long fileId) {
-        return memberRepository.findSharedMembersByFile_Id(fileId);
-    }
+    private final TeamRepository teamRepository;
+
 
     @Transactional
     @Override
-    public SharedFile create(Long fileId, Long memberId) {
+    public SharedFile create(Long fileId, Long teamId) {
         File file = fileRepository.findById(fileId).get();
-        Member member = memberRepository.findById(memberId).get();
-        SharedFile sharedFile = SharedFileConverter.toSharedFile(file, member);
+        Team team = teamRepository.findById(teamId).get();
+        SharedFile sharedFile = SharedFileConverter.toSharedFile(file, team);
         return sharedFileRepository.save(sharedFile);
     }
 
     @Transactional
     @Override
-    public void delete(Long fileId, Long memberId) {
-        sharedFileRepository.deleteByFile_IdAndMember_Id(fileId, memberId);
+    public void delete(Long fileId, Long teamId) {
+        sharedFileRepository.deleteByFile_IdAndTeam_Id(fileId, teamId);
         return;
     }
 }

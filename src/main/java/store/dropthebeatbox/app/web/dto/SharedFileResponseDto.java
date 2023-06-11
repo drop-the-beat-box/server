@@ -42,7 +42,7 @@ public class SharedFileResponseDto {
     public static class CreateSharedFileDto {
         private Long sharedFileId;
         private Long fileId;
-        private Long memberId;
+        private Long teamId;
         private LocalDateTime createdAt;
     }
 }
