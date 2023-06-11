@@ -4,6 +4,7 @@ import store.dropthebeatbox.app.domain.File;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.Team;
 import store.dropthebeatbox.app.domain.mapping.SharedFile;
+import store.dropthebeatbox.app.web.dto.FileResponseDto;
 import store.dropthebeatbox.app.web.dto.SharedFileResponseDto;
 
 import java.time.LocalDateTime;
@@ -52,6 +53,29 @@ public class SharedFileConverter {
         return SharedFile.builder()
                 .file(file)
                 .team(team)
+                .build();
+    }
+
+    public static SharedFileResponseDto.SharedFileDto toSharedFileDto(File file) {
+        return SharedFileResponseDto.SharedFileDto.builder()
+                .fileId(file.getId())
+                .name(file.getName())
+                .url(file.getUrl())
+                .description(file.getDescription())
+                .createdAt(file.getCreatedAt())
+                .updatedAt(file.getUpdatedAt())
+                .build();
+    }
+
+    public static SharedFileResponseDto.SharedFileListDto toSharedFileListDto(List<File> fileList) {
+        List<SharedFileResponseDto.SharedFileDto> fileDtoList =
+                fileList.stream()
+                        .map(file -> toSharedFileDto(file))
+                        .collect(Collectors.toList());
+
+        return SharedFileResponseDto.SharedFileListDto.builder()
+                .fileDtoList(fileDtoList)
+                .size(fileDtoList.size())
                 .build();
     }
 }

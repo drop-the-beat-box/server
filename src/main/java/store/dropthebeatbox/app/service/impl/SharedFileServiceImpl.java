@@ -36,6 +36,11 @@ public class SharedFileServiceImpl implements SharedFileService {
         return sharedFileRepository.save(sharedFile);
     }
 
+    @Override
+    public List<File> findByTeam(Long teamId) {
+        return sharedFileRepository.findFilesByTeam_Id(teamId);
+    }
+
     @Transactional
     @Override
     public void delete(Long fileId, Long teamId) {

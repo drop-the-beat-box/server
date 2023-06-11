@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import store.dropthebeatbox.app.converter.SharedFileConverter;
+import store.dropthebeatbox.app.domain.File;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.mapping.SharedFile;
 import store.dropthebeatbox.app.service.SharedFileService;
@@ -32,13 +33,25 @@ public class SharedFileRestController {
     @Operation(summary = "특정 파일을 팀 내 공유", description = "특정 파일을 팀에서 공유합니다. 팀에서 파일을 공유하고 싶으면 파일 업로드 API와 이 API를 사용하면 됩니다.")
     @Parameters({
             @Parameter(name = "fileId", description = "공유하고자 하는 파일의 id"),
-            @Parameter(name = "memberId", description = "공유하고 싶은 팀의 id")
+            @Parameter(name = "teamId", description = "공유하고 싶은 팀의 id")
     })
-    @PostMapping("/shared/{fileId}/member/{teamId}")
+    @PostMapping("/shared/{fileId}/team/{teamId}")
     public ResponseEntity<SharedFileResponseDto.CreateSharedFileDto> createSharedFile(@PathVariable(name = "fileId") @ExistFile Long fileId,
                                                                                       @PathVariable(name = "teamId") @ExistTeam Long teamId){
         SharedFile sharedFile = sharedFileService.create(fileId, teamId);
         return ResponseEntity.ok(SharedFileConverter.toCreateSharedFileDto(sharedFile));
     }
 
+    @Operation(summary = "특정 팀에서 공유하는 파일 목록 조회", description = "특정 팀에서 공유하는 파일 목록을 조회합니다.")
+    @Parameters({
+            @Parameter(name = "teamId", description = "조회하고자 하는 팀의 id")
+    })
+    @GetMapping("/shared/files/team/{teamId}")
+    public ResponseEntity<SharedFileResponseDto.SharedFileListDto> getFilesByTeam(@PathVariable(name = "teamId") @ExistTeam Long teamId) {
+        List<File> fileList = sharedFileService.findByTeam(teamId);
+        return ResponseEntity.ok(SharedFileConverter.toSharedFileListDto(fileList));
+
+    }
 }
+
+
