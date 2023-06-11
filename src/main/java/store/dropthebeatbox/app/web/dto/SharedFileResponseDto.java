@@ -42,7 +42,29 @@ public class SharedFileResponseDto {
     public static class CreateSharedFileDto {
         private Long sharedFileId;
         private Long fileId;
-        private Long memberId;
+        private Long teamId;
         private LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class SharedFileDto {
+        private Long fileId;
+        private String name;
+        private String url;
+        private String description;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class SharedFileListDto {
+        private List<SharedFileDto> fileDtoList;
+        private Integer size;
     }
 }

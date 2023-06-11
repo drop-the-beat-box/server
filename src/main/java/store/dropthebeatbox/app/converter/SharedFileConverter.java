@@ -2,7 +2,9 @@ package store.dropthebeatbox.app.converter;
 
 import store.dropthebeatbox.app.domain.File;
 import store.dropthebeatbox.app.domain.Member;
+import store.dropthebeatbox.app.domain.Team;
 import store.dropthebeatbox.app.domain.mapping.SharedFile;
+import store.dropthebeatbox.app.web.dto.FileResponseDto;
 import store.dropthebeatbox.app.web.dto.SharedFileResponseDto;
 
 import java.time.LocalDateTime;
@@ -36,7 +38,7 @@ public class SharedFileConverter {
         return SharedFileResponseDto.CreateSharedFileDto.builder()
                 .sharedFileId(sharedFile.getId())
                 .fileId(sharedFile.getFile().getId())
-                .memberId(sharedFile.getMember().getId())
+                .teamId(sharedFile.getTeam().getId())
                 .createdAt(sharedFile.getCreatedAt())
                 .build();
     }
@@ -47,10 +49,33 @@ public class SharedFileConverter {
                 .build();
     }
 
-    public static SharedFile toSharedFile(File file, Member member) {
+    public static SharedFile toSharedFile(File file, Team team) {
         return SharedFile.builder()
                 .file(file)
-                .member(member)
+                .team(team)
+                .build();
+    }
+
+    public static SharedFileResponseDto.SharedFileDto toSharedFileDto(File file) {
+        return SharedFileResponseDto.SharedFileDto.builder()
+                .fileId(file.getId())
+                .name(file.getName())
+                .url(file.getUrl())
+                .description(file.getDescription())
+                .createdAt(file.getCreatedAt())
+                .updatedAt(file.getUpdatedAt())
+                .build();
+    }
+
+    public static SharedFileResponseDto.SharedFileListDto toSharedFileListDto(List<File> fileList) {
+        List<SharedFileResponseDto.SharedFileDto> fileDtoList =
+                fileList.stream()
+                        .map(file -> toSharedFileDto(file))
+                        .collect(Collectors.toList());
+
+        return SharedFileResponseDto.SharedFileListDto.builder()
+                .fileDtoList(fileDtoList)
+                .size(fileDtoList.size())
                 .build();
     }
 }
