@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.dropthebeatbox.app.converter.TeamConverter;
+import store.dropthebeatbox.app.converter.TeamMemberConverter;
 import store.dropthebeatbox.app.domain.Member;
 import store.dropthebeatbox.app.domain.Team;
+import store.dropthebeatbox.app.domain.mapping.TeamMember;
 import store.dropthebeatbox.app.repository.TeamMemberRepository;
 import store.dropthebeatbox.app.repository.TeamRepository;
 import store.dropthebeatbox.app.service.TeamService;
@@ -25,6 +27,8 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Team create(TeamRequestDto.CreateTeamDto request, Member member) {
         Team team = TeamConverter.toTeam(request, member);
+        TeamMember teamMember = TeamMemberConverter.toTeamMember(team, member);
+        teamMemberRepository.save(teamMember);
         return teamRepository.save(team);
     }
 
